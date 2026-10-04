@@ -17,7 +17,7 @@ h1, h2, h3, p { margin: 0; }
 /* Rejilla de 12 columnas que Figma pone dentro del slot del Wrapper (frame "Grid"). */
 .r4-grid {
   display: grid;
-  grid-template-columns: repeat(12, minmax(0, 1fr));
+  grid-template-columns: repeat(var(--grid-columns, 12), minmax(0, 1fr));
   column-gap: var(--grid-gutter);
   row-gap: var(--spacing-6);
   width: 100%;

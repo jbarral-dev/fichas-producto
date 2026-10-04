@@ -1,12 +1,24 @@
+/* desktop: gap 12 (spacing/3), descripción body/l 18/26 · mobile: gap 8 (spacing/2), descripción body/m 16/24 */
 .r4-page-title-process {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   gap: var(--spacing-3);
 }
+.r4-page-title-process--mobile { gap: var(--spacing-2); }
 
 .r4-page-title-process__title {
   width: 100%;
   font: var(--font-weight-bold) var(--size-heading-m) / var(--line-height-heading-m) var(--font-family-headings);
   color: var(--text-default);
+}
+
+.r4-page-title-process__description {
+  width: 100%;
+  font: var(--font-weight-regular) var(--size-body-l) / var(--line-height-body-l) var(--font-family-body);
+  color: var(--text-subdued);
+}
+.r4-page-title-process--mobile .r4-page-title-process__description {
+  font-size: var(--size-body-m);
+  line-height: var(--line-height-body-m);
 }

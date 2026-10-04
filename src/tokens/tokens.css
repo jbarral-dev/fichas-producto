@@ -117,3 +117,76 @@
   --size-base-sizesm: 12px;
   --size-height-controlheightsm: 24px;
 }
+
+/* ── Tokens añadidos para R4InputText y R4Button secondary (leídos con resolveForConsumer) ── */
+:root {
+  --text-muted: #707070;
+  --accent-text: #851a2e;
+  --accent-text-hover: #50101c;
+  --component-button-secondary-bg-hover: #f3e8ea;
+  --component-button-secondary-bg-pressed: #e7d1d5;
+  --component-button-secondary-border-hover: #50101c;
+
+  --feedback-error-bg: #ffe2e3;
+  --feedback-error-border: #b60306;
+  --feedback-error-text: #b60306;
+  --feedback-success-bg: #e8f6e0;
+  --feedback-success-border: #256603;
+  --feedback-success-text: #256603;
+
+  --component-input-bg-default: #ffffff;
+  --component-input-bg-disabled: #e0e0e0;
+  --component-input-border-default: #c7c7c7;
+  --component-input-border-hover: #707070;
+  --component-input-border-focused: #0b0b0b;
+  --component-input-radius: 8px;
+  --components-input-global-controlpaddinghorizontal: 12px;
+  --size-line-width-linewidth: 1px;
+  --spacing-05: 2px;
+  /* Efectos de foco del input (InputFocusShadow, InputErrorFocusShadow, InputSuccessFocusShadow) */
+  --effect-input-focus-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.3);
+  --effect-input-error-focus-shadow: 0 0 4px 2px rgba(146, 2, 5, 0.45);
+  --effect-input-success-focus-shadow: 0 0 4px 2px rgba(37, 102, 3, 0.45);
+
+  /* Columnas de la rejilla según modo (docs "Páginas de Procesos": 12 / 8 / 4) */
+  --grid-columns: 12;
+  /* Escala de density del Wrapper definida por documentación (no extraída de Figma): compact 32/28/24 · relaxed 64/56/48 */
+  --r4-density-compact: 32px;
+  --r4-density-relaxed: 64px;
+}
+
+/*
+ * Modos de Figma (colecciones "Layout", "Typography" y "1. Grid": Desktop XL / Desktop / Tablet / Mobile).
+ * Valores leídos de las variables de Figma. Se aplican sobre `.r4-layout-modes` según el ancho del CONTENEDOR `r4page`
+ * (la Template, ver TemplateProcess.css). Desktop XL y Desktop tienen los mismos valores en todo lo usado hasta ahora.
+ * Umbrales (1024 / 768 px): salen de la tabla responsive de "Páginas de Procesos" (anchos de referencia 1024 · 768 · 390);
+ * Figma no define umbrales, es una inferencia.
+ */
+@container r4page (max-width: 1023px) {
+  .r4-layout-modes {
+    --wrapper-paddingdefault: 40px;
+    --wrapper-paddingrelaxed: 40px;
+    --spacing-page-start: 40px;
+    --r4-density-compact: 28px;
+    --r4-density-relaxed: 56px;
+    --size-heading-m: 28px;
+    --line-height-heading-m: 32px;
+    --menuheight: 56px;
+    --grid-columns: 8;
+  }
+}
+
+@container r4page (max-width: 767px) {
+  .r4-layout-modes {
+    --wrapper-paddingdefault: 32px;
+    --wrapper-paddingrelaxed: 32px;
+    --spacing-page-start: 32px;
+    --r4-density-compact: 24px;
+    --r4-density-relaxed: 48px;
+    --grid-containerpadding: 12px;
+    --containerpadding: 12px;
+    --size-heading-m: 24px;
+    --line-height-heading-m: 28px;
+    --grid-columns: 4;
+  }
+}

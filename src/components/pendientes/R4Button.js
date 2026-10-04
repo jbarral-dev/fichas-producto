@@ -1,7 +1,7 @@
 // PENDIENTE-IT: no oficial. Sustituir cuando exista en la librería Vue.
 // Reconstrucción desde Figma (era VUE en el catálogo). Props como en Figma: text, icon, variant, content, size, interaction.
-// Reconstruido: variant primary | text · size large · content text | iconAndText | icon · interaction default/hover/focused/pressed/disabled.
-// NO reconstruido (no leído): variant secondary y size medium.
+// Reconstruido: variant primary | secondary | text · size large · content text | iconAndText | icon · interaction default/hover/focused/pressed/disabled.
+// NO reconstruido (no leído): size medium. secondary solo leída con content text e icon (iconAndText sigue el mismo patrón).
 // `interaction` en Figma es un estado: aquí lo resuelven :hover / :focus-visible / :active / disabled.
 import { defineComponent, computed } from '../../../vendor/vue.esm-browser.prod.js'
 import _Icon from '../../icons/_Icon.js'
@@ -12,7 +12,7 @@ export default defineComponent({
   props: {
     text: { type: String, default: '' },
     icon: { type: String, default: 'search' }, // nombre del componente de icono en Figma (default de Figma: search)
-    variant: { type: String, default: 'primary', validator: (v) => ['primary', 'text'].includes(v) },
+    variant: { type: String, default: 'primary', validator: (v) => ['primary', 'secondary', 'text'].includes(v) },
     content: { type: String, default: 'text', validator: (v) => ['text', 'iconAndText', 'icon'].includes(v) },
     size: { type: String, default: 'large', validator: (v) => v === 'large' },
     href: { type: String, default: '' },

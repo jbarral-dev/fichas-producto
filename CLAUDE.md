@@ -81,6 +81,15 @@ No todos los componentes diseñados en Figma están desarrollados en Vue: de ah�
   (hover, focus, pressed, disabled), tokens (con `use_figma` y `variable.resolveForConsumer(node)`, porque `get_variable_defs`
   falla con componentes de librería) y valores por mediaQuery. Lo que no se reconstruya se declara en la cabecera del archivo
   y en el resumen final. No inventes estilos: si Figma no lo dice, léelo; si no se puede leer, pregunta.
+- **Header de página:** todo lo que en Figma entra en la capa `Header` (Menu + R4ProgressBar; se omite `Browser`) queda **fijo
+  (`position: sticky; top: 0`)** al hacer scroll. Lo hace `TemplateProcess`.
+- **Responsive de las páginas de proceso** (Confluence "Páginas de Procesos", 3497656350, leída en vivo; tabla por ancho de
+  referencia 1024 · 768 · 390): columnas 12 / 8 / 4; contenido 6 de 12 · 6 de 8 · 4 de 4; padding vertical y espacio entre bloques
+  48 / 40 / 32; padding horizontal 24 / 24 / 12; ancho máx. 1368. Se implementa con las **variables de modo de Figma**
+  (colecciones Layout, Typography y 1. Grid: Desktop XL / Desktop / Tablet / Mobile) en `src/tokens/tokens.css`, aplicadas por el
+  ancho del **contenedor** `r4page` (la Template) con container queries. Umbrales 1024 / 768: inferidos de esa tabla.
+  El contenido de la pantalla puede **cambiar** entre breakpoints (p. ej. mobile del doble factor: sin QR, con campo + botón copiar):
+  pide siempre el Figma de cada breakpoint; si falta (hoy: tablet), extrapola con los tokens y la tabla y **dilo**.
 - **Orden en el DOM:** manda el orden de lectura lógico (título → contenido → acción), no el orden de capas de Figma.
 - **Datos de prototipo** (QR, claves, textos que vendrían de backend): usa valores de ejemplo y señálalos.
 

@@ -1,17 +1,17 @@
 /*
  * Density (docs/templates-y-wrapper.md): none 0 · compact 32/28/24 · default 48/40/32 · relaxed 64/56/48 (desktop/tablet/mobile).
- * Solo desktop sale de tokens de Figma (--wrapper-paddingdefault); el resto son valores de la escala v2 de la documentación.
- * Los breakpoints de contenedor (1024 y 640 px) son una INFERENCIA: no están definidos en lo leído hasta ahora.
+ * default sale de wrapper/paddingDefault (Figma, modos Layout); compact y relaxed vienen de la documentación (--r4-density-*).
+ * isFirst usa spacing/page-start (documentación). Los valores por modo los pone `.r4-layout-modes` (tokens.css) según el
+ * ancho de la Template; el Wrapper ya no decide breakpoints.
  */
 .r4-wrapper {
-  container-type: inline-size;
   width: 100%;
   --r4-wrapper-pad: var(--wrapper-paddingdefault);
 }
 
 .r4-wrapper--density-none { --r4-wrapper-pad: 0px; }
-.r4-wrapper--density-compact { --r4-wrapper-pad: 32px; }
-.r4-wrapper--density-relaxed { --r4-wrapper-pad: 64px; }
+.r4-wrapper--density-compact { --r4-wrapper-pad: var(--r4-density-compact); }
+.r4-wrapper--density-relaxed { --r4-wrapper-pad: var(--r4-density-relaxed); }
 .r4-wrapper--first { --r4-wrapper-pad: var(--spacing-page-start); }
 
 .r4-wrapper--bg-white { background: var(--surface-default); }
@@ -29,18 +29,4 @@
   min-width: 0;
   max-width: var(--grid-containermaxwidth);
   padding-inline: var(--grid-containerpadding);
-}
-
-@container (max-width: 1023px) {
-  .r4-wrapper--density-compact .r4-wrapper__container { --r4-wrapper-pad: 28px; padding-block: 28px; }
-  .r4-wrapper--density-default .r4-wrapper__container { padding-block: 40px; }
-  .r4-wrapper--density-relaxed .r4-wrapper__container { padding-block: 56px; }
-  .r4-wrapper--first .r4-wrapper__container { padding-block: 40px; }
-}
-
-@container (max-width: 639px) {
-  .r4-wrapper--density-compact .r4-wrapper__container { padding-block: 24px; }
-  .r4-wrapper--density-default .r4-wrapper__container { padding-block: 32px; }
-  .r4-wrapper--density-relaxed .r4-wrapper__container { padding-block: 48px; }
-  .r4-wrapper--first .r4-wrapper__container { padding-block: 32px; }
 }

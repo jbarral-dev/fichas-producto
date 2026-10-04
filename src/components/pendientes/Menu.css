@@ -30,10 +30,8 @@
   display: flex;
   align-items: center;
   gap: 9px;
-  color: var(--colors-neutral-textwhite);
 }
-
-
+.menu__branding-isotype { display: none; }
 
 .menu__help {
   display: flex;
@@ -43,8 +41,17 @@
   font: var(--font-weight-semibold) var(--size-body-l) / var(--line-height-body-l) var(--font-family-body);
   text-decoration: none;
 }
+.menu__help .r4-icon { width: 24px; height: 24px; }
 
 .menu__help:focus-visible {
-  outline: 2px solid var(--colors-neutral-textwhite);
-  outline-offset: 2px;
+  outline: 0;
+  box-shadow: var(--effect-card-focus-outline);
+}
+
+/* Device=Mobile (Figma): isotipo en lugar del logotipo; "Ayuda" body/m con icono de 20 px */
+@container r4page (max-width: 767px) {
+  .menu__branding-logotype { display: none; }
+  .menu__branding-isotype { display: block; }
+  .menu__help { font-size: var(--size-body-m); line-height: var(--line-height-body-m); }
+  .menu__help .r4-icon { width: 20px; height: 20px; }
 }

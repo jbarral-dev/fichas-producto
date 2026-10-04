@@ -1,6 +1,6 @@
 // PENDIENTE-IT: no oficial. Sustituir cuando exista en la librería Vue.
 // Reconstrucción desde Figma/docs (R4Wrapper, Changelog SM-23967). Props: density, backgroundColor, isFirst (docs/templates-y-wrapper.md).
-// Ejes de dispositivo (mediaQuery) resueltos con container queries, no con prop.
+// Los valores por modo (Desktop/Tablet/Mobile) los resuelven las variables de .r4-layout-modes (Template), no una prop.
 import { defineComponent } from '../../../vendor/vue.esm-browser.prod.js'
 
 export default defineComponent({
