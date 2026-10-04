@@ -72,6 +72,15 @@ No todos los componentes diseñados en Figma están desarrollados en Vue: de ah�
   mismo nombre y jerarquía que en Figma, `/` → `-`). Declara las dos capas (primitivos y semánticos), pero los
   componentes **solo consumen semánticos**. Si un componente necesita un token que no está declarado, extráelo antes de
   construir; no pongas valores literales. Cuando llegue el repo de IT, se sustituyen por los suyos.
+- **Iconos y logotipo: siempre los de Figma, nunca dibujados ni inventados.** Los iconos son componentes de Primitivos 1.2 (página
+  "↳ Icons"). Se obtienen con `use_figma` (solo lectura; cargar antes el skill `figma-use` con `get_figma_skill`,
+  `uri: skill://figma/figma-use/SKILL.md`) exportando el nodo con `exportAsync({ format: 'SVG_STRING' })`, y se registran en
+  `src/icons/icons.js` con el nombre del componente de Figma (color fijo → `currentColor`). El logotipo es `R4 / Brand / Types`
+  (`R4BrandTypes`). `curl` a figma.com y a nodejs.org falla por el proxy corporativo (407): no lo intentes.
+- **Reconstruir un componente = leerlo entero en Figma, no solo la variante que usa la pantalla:** props, variantes, estados
+  (hover, focus, pressed, disabled), tokens (con `use_figma` y `variable.resolveForConsumer(node)`, porque `get_variable_defs`
+  falla con componentes de librería) y valores por mediaQuery. Lo que no se reconstruya se declara en la cabecera del archivo
+  y en el resumen final. No inventes estilos: si Figma no lo dice, léelo; si no se puede leer, pregunta.
 - **Orden en el DOM:** manda el orden de lectura lógico (título → contenido → acción), no el orden de capas de Figma.
 - **Datos de prototipo** (QR, claves, textos que vendrían de backend): usa valores de ejemplo y señálalos.
 

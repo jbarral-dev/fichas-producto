@@ -1,12 +1,14 @@
 // PENDIENTE-IT: no oficial. Sustituir cuando exista en la librería Vue.
 // Reconstrucción desde Figma: componente del archivo "Templates | 1.0" (antiguo, vigente). Se ha leído solo la instancia de la
-// pantalla del doble factor: Type=Process, desktop. El logotipo es un PLACEHOLDER de texto (SVG de marca sin descargar).
+// pantalla del doble factor: Type=Process, desktop. Logotipo = R4BrandTypes (SVG de Figma); icono de ayuda = ic-question-circle.
 import { defineComponent } from '../../../vendor/vue.esm-browser.prod.js'
 import R4ProgressBar from './R4ProgressBar.js'
+import R4BrandTypes from './R4BrandTypes.js'
+import _Icon from '../../icons/_Icon.js'
 
 export default defineComponent({
   name: 'Menu',
-  components: { R4ProgressBar },
+  components: { R4ProgressBar, R4BrandTypes, Icon: _Icon },
   props: {
     type: { type: String, default: 'process' },
     processTitle: { type: String, default: '' },
@@ -18,16 +20,9 @@ export default defineComponent({
     <header class="menu">
       <div class="menu__bar">
         <div class="menu__bar-content">
-          <div class="menu__branding" aria-label="renta4banco">
-            <span class="menu__logo-mark" aria-hidden="true">r4</span>
-            <span class="menu__logo-text">renta4banco</span>
-          </div>
+          <div class="menu__branding"><R4BrandTypes content="Logotype" theme="Dark" /></div>
           <a class="menu__help" href="#">
-            <svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true">
-              <circle cx="12" cy="12" r="9.5" fill="none" stroke="currentColor" stroke-width="1.8" />
-              <path d="M9.5 9.5a2.5 2.5 0 1 1 3.6 2.25c-.7.35-1.1.9-1.1 1.6v.4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
-              <circle cx="12" cy="17" r="1.1" fill="currentColor" />
-            </svg>
+            <Icon name="ic-question-circle" />
             <span>Ayuda</span>
           </a>
         </div>

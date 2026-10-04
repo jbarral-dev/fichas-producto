@@ -27,21 +27,21 @@ export default defineComponent({
         <div class="r4-grid screen-2fa__grid">
           <div class="screen-2fa__col"><R4PageTitleProcess title="Asocia Renta 4 a un autenticador" /></div>
           <div class="screen-2fa__col screen-2fa__content">
-            <R4Section>
+            <R4Section :show-header="false" background-color="white" appearance="boxed" media-query="desktop">
               <div class="screen-2fa__qr-steps">
                 <QrPlaceholder :size="160" />
-                <R4Steps class="screen-2fa__steps">
-                  <StepItem :number="1" description="Abre tu app de autenticación.">
-                    <R4Link href="#" label="¿Qué es una app de autenticación?" />
+                <R4Steps class="screen-2fa__steps" size="medium">
+                  <StepItem step-number="1" :show-title="false" description="Abre tu app de autenticación." show-slot>
+                    <R4Link href="#" text="¿Qué es una app de autenticación?" size="small" type="standalone" />
                   </StepItem>
-                  <StepItem :number="2" description="Escanea el código QR." />
-                  <StepItem :number="3" description="Vuelve aquí y pulsa en “Continuar”." is-last />
+                  <StepItem step-number="2" :show-title="false" description="Escanea el código QR." />
+                  <StepItem step-number="3" :show-title="false" description="Vuelve aquí y pulsa en “Continuar”." is-last-item="yes" />
                 </R4Steps>
               </div>
             </R4Section>
             <R4Notification type="info">Si no puedes escanear el QR, introduce esta clave tu aplicación: {{ claveManual }}</R4Notification>
           </div>
-          <div class="screen-2fa__col"><R4Button label="Continuar" href="#" /></div>
+          <div class="screen-2fa__col"><R4Button text="Continuar" variant="primary" content="text" size="large" href="#" /></div>
         </div>
       </R4Wrapper>
     </TemplateProcess>

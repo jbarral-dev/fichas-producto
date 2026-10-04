@@ -21,6 +21,25 @@
   --accent-text-on-accent: #ffffff;
   --accent-link: #9d4858;
 
+  --surface-subtle: #f7f7f7;
+
+  /* ── Color · estados (hover, pressed, disabled, foco) ─ */
+  --accent-hover: #50101c;
+  --accent-pressed: #50101c;
+  --accent-link-hover: #6a1525;
+  --accent-border: #851a2e;
+  --text-disabled: #ababab;
+  --component-button-primary-bg-disabled: #e0e0e0;
+  --component-button-primary-border-disabled: #c7c7c7;
+  --component-button-text-bg-hover: #f3e8ea;
+  --component-button-text-bg-pressed: #e7d1d5;
+  --interaction-button-primary-textpressed: #ffffff;
+  --interaction-input-default-inputborderactive: #0b0b0b;
+  /* Efecto "CardFocusOutline" (2 sombras: 4 px #f7f7f7 y 6 px #0b0b0b) */
+  --effect-card-focus-outline: 0 0 0 4px #f7f7f7, 0 0 0 6px #0b0b0b;
+  --components-button-global-linewidth: 1px;
+  --components-button-global-controlheightlg: 40px;
+
   /* ── Color · borde ────────────────────────────────── */
   --border-default: #c7c7c7;
   --border-subtle: #e0e0e0;
@@ -39,10 +58,14 @@
   --size-body-s: 14px;
   --size-body-m: 16px;
   --size-body-l: 18px;
+  --size-body-xl: 20px;
+  --size-heading-s: 24px; /* modo desktop; tablet 22, mobile 20 (ver R4Section.css) */
   --size-heading-m: 32px;
   --line-height-body-s: 20px;
   --line-height-body-m: 24px;
   --line-height-body-l: 26px;
+  --line-height-body-xl: 28px;
+  --line-height-heading-s: 28px; /* modo desktop; tablet 26, mobile 24 */
   --line-height-heading-m: 36px;
 
   /* ── Espaciado ────────────────────────────────────── */
@@ -51,8 +74,10 @@
   --spacing-2: 8px;
   --spacing-3: 12px;
   --spacing-4: 16px;
+  --spacing-5: 20px;
   --spacing-6: 24px;
   --spacing-8: 32px;
+  --spacing-12: 48px;
 
   /* ── Grid y contenedor ────────────────────────────── */
   --grid-gutter: 24px;

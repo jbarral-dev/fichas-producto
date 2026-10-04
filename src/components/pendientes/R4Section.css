@@ -1,13 +1,73 @@
+/*
+ * R4Section — valores leídos de las 12 variantes de Figma.
+ * desktop: gap 32 (Space/Padding/paddingExtraLarge), padding 24 (spacing/6) · tablet: gap 32 (spacing/8), padding 20 (spacing/5)
+ * mobile: gap 24 (spacing/6), padding 16 (spacing/4), el enlace "Ver todos" pasa debajo del slot y se alinea a la derecha.
+ * plain: sin padding ni borde; mismos gaps (32 / 32 / 24).
+ * Título (Heading/Small): 24/28 · 22/26 · 20/24 según mediaQuery (modos del token size/heading/s).
+ */
 .r4-section {
+  --r4-section-pad: var(--spacing-6);
+  --r4-section-gap: var(--space-padding-paddingextralarge);
+  --size-heading-s: 24px;
+  --line-height-heading-s: 28px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: var(--space-padding-paddingextralarge);
+  gap: var(--r4-section-gap);
   width: 100%;
-  padding: var(--spacing-6);
-  box-shadow: inset 0 0 0 1px var(--border-subtle); /* borde interior: Figma incluye el trazo en el tamaño */
-  background: var(--surface-default);
 }
+
+.r4-section--tablet {
+  --r4-section-pad: var(--spacing-5);
+  --r4-section-gap: var(--spacing-8);
+  --size-heading-s: 22px;
+  --line-height-heading-s: 26px;
+}
+
+.r4-section--mobile {
+  --r4-section-pad: var(--spacing-4);
+  --r4-section-gap: var(--spacing-6);
+  --size-heading-s: 20px;
+  --line-height-heading-s: 24px;
+}
+
+/* plain: el gap de desktop/tablet es spacing/8 (32) y el de mobile spacing/6 (24); sin padding */
+.r4-section--plain { padding: 0; }
+.r4-section--plain.r4-section--desktop,
+.r4-section--plain.r4-section--tablet { --r4-section-gap: var(--spacing-8); }
+
+/* boxed: el trazo de 1 px va "inside" en Figma → box-shadow interior para no sumar tamaño */
+.r4-section--boxed {
+  padding: var(--r4-section-pad);
+  box-shadow: inset 0 0 0 1px var(--border-subtle);
+}
+.r4-section--bg-white { background: var(--surface-default); }
+.r4-section--bg-subtleGrey { background: var(--surface-subtle); }
+.r4-section--bg-transparent { background: transparent; }
+
+.r4-section__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  width: 100%;
+}
+
+.r4-section__title-wrapper {
+  display: flex;
+  flex: 1 1 0;
+  align-items: center;
+  min-width: 0;
+  padding-right: var(--spacing-6);
+}
+
+.r4-section__title {
+  font: var(--font-weight-bold) var(--size-heading-s) / var(--line-height-heading-s) var(--font-family-headings);
+  color: var(--text-default);
+}
+
+.r4-section__more { flex: none; }
+.r4-section__more--bottom { align-self: flex-end; }
 
 .r4-section__slot {
   display: flex;

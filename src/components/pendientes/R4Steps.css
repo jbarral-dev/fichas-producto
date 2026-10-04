@@ -1,3 +1,9 @@
+/*
+ * stepItem — valores leídos de las variantes de Figma.
+ * medium: indicador 32, gap 12, padding-bottom 4, Content padding-bottom 24, gap 12, Texts padding-top 4 / gap 4, título 16/24 bold, descripción 14/20.
+ * large:  indicador 48, gap 24, padding-bottom 8, Content padding-bottom 32, gap 16, Texts padding-top 8 / gap 8, título 20/28 bold, descripción 16/24.
+ * isLastItem=yes: sin padding-bottom y sin línea.
+ */
 .r4-steps {
   display: flex;
   flex-direction: column;
@@ -8,13 +14,41 @@
 }
 
 .r4-step-item {
+  --r4-step-indicator: var(--spacing-8);
+  --r4-step-gap: var(--spacing-3);
+  --r4-step-pad-bottom: var(--spacing-1);
+  --r4-step-content-gap: var(--spacing-3);
+  --r4-step-content-pad-bottom: var(--spacing-6);
+  --r4-step-texts-pad-top: var(--spacing-1);
+  --r4-step-texts-gap: var(--spacing-1);
+  --r4-step-title-size: var(--size-body-m);
+  --r4-step-title-lh: var(--line-height-body-m);
+  --r4-step-desc-size: var(--size-body-s);
+  --r4-step-desc-lh: var(--line-height-body-s);
   display: flex;
   align-items: flex-start;
-  gap: var(--spacing-3);
-  padding: var(--spacing-0) var(--spacing-0) var(--spacing-1);
+  gap: var(--r4-step-gap);
+  padding: 0 0 var(--r4-step-pad-bottom);
 }
 
-.r4-step-item--last { padding-bottom: var(--spacing-0); }
+.r4-step-item--large {
+  --r4-step-indicator: var(--spacing-12);
+  --r4-step-gap: var(--spacing-6);
+  --r4-step-pad-bottom: var(--spacing-2);
+  --r4-step-content-gap: var(--spacing-4);
+  --r4-step-content-pad-bottom: var(--spacing-8);
+  --r4-step-texts-pad-top: var(--spacing-2);
+  --r4-step-texts-gap: var(--spacing-2);
+  --r4-step-title-size: var(--size-body-xl);
+  --r4-step-title-lh: var(--line-height-body-xl);
+  --r4-step-desc-size: var(--size-body-m);
+  --r4-step-desc-lh: var(--line-height-body-m);
+}
+
+.r4-step-item--last {
+  --r4-step-pad-bottom: 0px;
+  --r4-step-content-pad-bottom: 0px;
+}
 
 .r4-step-item__indicator-and-line {
   display: flex;
@@ -24,24 +58,34 @@
   align-self: stretch;
   flex: none;
 }
+.r4-step-item--large .r4-step-item__indicator-and-line { gap: var(--spacing-2); }
+.r4-step-item--large.r4-step-item--last .r4-step-item__indicator-and-line { gap: var(--spacing-1); } /* tal cual en Figma (isLastItem=yes, large) */
 
 .r4-step-item__indicator {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 32px;
-  height: 32px;
+  flex: none;
+  width: var(--r4-step-indicator);
+  height: var(--r4-step-indicator);
   border-radius: 100px;
   background: var(--surface-muted);
   color: var(--text-default);
-  font: var(--font-weight-bold) var(--size-body-m) / var(--line-height-body-m) var(--font-family-body);
 }
 
-/* Línea de puntos entre indicadores. Estilo (dashed, --border-default) inferido de la captura, no leído de Figma. */
+.r4-step-item__number {
+  font-family: var(--font-family-body);
+  font-weight: var(--font-weight-bold);
+  font-size: var(--r4-step-title-size);
+  line-height: var(--r4-step-title-lh);
+}
+
+/* Línea vertical de 1 px, discontinua 2 px / 2 px, color border/default (trazo del nodo Line del stepItem) */
 .r4-step-item__line {
   flex: 1 1 0;
   min-height: 1px;
-  border-left: 1px dashed var(--border-default);
+  width: 1px;
+  background: repeating-linear-gradient(to bottom, var(--border-default) 0 2px, transparent 2px 4px);
 }
 
 .r4-step-item__content {
@@ -49,28 +93,26 @@
   flex: 1 1 0;
   flex-direction: column;
   align-items: flex-start;
-  gap: var(--spacing-3);
+  gap: var(--r4-step-content-gap);
   min-width: 0;
-  padding-bottom: var(--spacing-6);
+  padding-bottom: var(--r4-step-content-pad-bottom);
 }
-
-.r4-step-item--last .r4-step-item__content { padding-bottom: var(--spacing-0); }
 
 .r4-step-item__texts {
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-1);
+  gap: var(--r4-step-texts-gap);
   width: 100%;
-  padding-top: var(--spacing-1);
+  padding-top: var(--r4-step-texts-pad-top);
 }
 
 .r4-step-item__title {
-  font: var(--font-weight-bold) var(--size-body-m) / var(--line-height-body-m) var(--font-family-body);
+  font: var(--font-weight-bold) var(--r4-step-title-size) / var(--r4-step-title-lh) var(--font-family-body);
   color: var(--text-default);
 }
 
 .r4-step-item__description {
-  font: var(--font-weight-regular) var(--size-body-s) / var(--line-height-body-s) var(--font-family-body);
+  font: var(--font-weight-regular) var(--r4-step-desc-size) / var(--r4-step-desc-lh) var(--font-family-body);
   color: var(--text-subdued);
 }
 
@@ -78,6 +120,6 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: var(--spacing-3);
+  gap: var(--r4-step-content-gap);
   width: 100%;
 }

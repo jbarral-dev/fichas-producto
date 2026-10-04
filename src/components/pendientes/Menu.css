@@ -33,22 +33,7 @@
   color: var(--colors-neutral-textwhite);
 }
 
-/* PLACEHOLDER del logotipo hasta tener el SVG de marca. */
-.menu__logo-mark {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 32px;
-  height: 32px;
-  border-radius: 4px;
-  background: var(--colors-neutral-textwhite);
-  color: var(--components-menu-component-darkitembg);
-  font: var(--font-weight-bold) var(--size-body-m) / 1 var(--font-family-headings);
-}
 
-.menu__logo-text {
-  font: var(--font-weight-bold) 24px / 1 var(--font-family-headings);
-}
 
 .menu__help {
   display: flex;
