@@ -195,3 +195,26 @@
     --grid-columns: 4;
   }
 }
+
+/* ── Tokens añadidos para R4InputPhone y R4InputCheckbox (generación "Interaction/Input/*" y "Colors/Status/*" que usa _Phone) ── */
+:root {
+  --interaction-input-default-inputborder: #ababab;
+  --interaction-input-default-inputtextplaceholder: #ababab;
+  --interaction-input-default-inputborderhover: #707070;
+  --interaction-input-default-inputtexthover: #0b0b0b;
+  --interaction-input-default-inputborderfocus: #0b0b0b;
+  --interaction-input-default-inputtextfocus: #0b0b0b;
+  --interaction-input-default-inputbordertyping: #0b0b0b;
+  --interaction-input-default-inputtexttyping: #0b0b0b;
+  --interaction-input-default-inputborderfill: #ababab;
+  --interaction-input-default-inputtextfill: #0b0b0b;
+  --interaction-input-default-inputbgdisabled: #fcfcfc;
+  --interaction-input-default-inputborderdisabled: #ababab;
+  --interaction-input-default-inputtextdisabled: #707070;
+  --colors-status-error-bglight: #ffe2e3;
+  --colors-status-error-border: #b60306;
+  --interaction-input-error-inputtext: #0b0b0b;
+  --icon-default: #0b0b0b;
+  --icon-disabled: #ababab;
+  --border-inverse: #0b0b0b;
+}
