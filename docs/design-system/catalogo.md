@@ -137,8 +137,8 @@ Aparecen en documentos posteriores. **Estado Vue desconocido: confirmar con IT /
 | _TabItem | `13416:5227` | Privado. Hijo de R4Tabs |
 | _FeatureLeading | `26945:225` | Privado. Hijo de R4Feature |
 | CardContainer | ? | Superficie de card con estados. La usan R4Feature y R4StatItem |
-| Menu | ? | Parte de la Template (`mediaQuery`). En proceso: `Type=Process`, incluye R4ProgressBar. No está en el dashboard. Se reconstruye en `pendientes/` |
-| Footer (`_Footer Default`) | ? | Parte de la Template. Las páginas de proceso no lo llevan |
+| Menu | ? | Archivo Figma "Templates 1.0" (antiguo, de uso vigente). En proceso: `Type=Process`, incluye R4ProgressBar. Se reconstruye en `pendientes/` |
+| Footer (`_Footer Default`) | ? | Archivo Figma "Templates 1.0" (antiguo, vigente). Las páginas de proceso no lo llevan |
 | R4CardArticle | ? | Nombre del Changelog (SM-18984); el catálogo lo llama R4Article. Mismo componente, salvo que Jon diga otra cosa |
 
 ---

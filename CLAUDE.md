@@ -39,20 +39,6 @@ No todos los componentes diseñados en Figma están desarrollados en Vue: de ah�
   `contentFormat: markdown` (funciona; hay que cargar la herramienta con ToolSearch). `catalogo.md` solo resume sus entradas
   clave: **para cada componente, léelo en vivo** (paso 0 del flujo) y no vuelvas a preguntar a Jon por él.
 
-## Decisiones cerradas (no volver a preguntar)
-
-- **Catálogo y Changelog:** ver arriba. El catálogo es `catalogo.md`; el Changelog se lee en vivo por MCP.
-- **Figma:** usar el conector de Figma ya cargado (`get_metadata`, `get_design_context`, `get_screenshot`, `get_variable_defs`).
-  Si falla, no pidas a Jon que lo arregle sin haberlo probado antes. Los conectores `plugin:design:*` pueden fallar por proxy: ignóralos.
-- **Menu y Footer** no están en el catálogo: son parte de la **Template** (`mediaQuery`) y se construyen en `pendientes/`
-  como no oficiales. En páginas de proceso el Menu es `Type=Process` y no hay Footer. `_Browser` es solo marco de
-  presentación en Figma: **no se construye**.
-- **Stack del prototipo:** Vite + Vue 3 (`<script setup>`) + TypeScript; CSS plano con variables CSS (tokens semánticos
-  desde `get_variable_defs`) y container queries; sin Tailwind, Router ni Pinia. Cámbialo solo si Jon indica otro.
-- **Nombres en Figma con errata:** la propiedad del Wrapper aparece como `backgroundCorlor`. En código usa `backgroundColor`.
-- **Orden en el DOM:** manda el orden de lectura lógico (título → contenido → acción), no el orden de capas de Figma.
-- **Datos de prototipo** (QR, claves, textos que vendrían de backend): usa valores de ejemplo y señálalos.
-
 ### Figma
 
 - **Primitivos 1.2** (el principal: variables, foundations y componentes principales) →
@@ -63,6 +49,23 @@ No todos los componentes diseñados en Figma están desarrollados en Vue: de ah�
 ### Storybook (librería Vue de IT)
 
 - https://storybook-dev.renta4.es/
+
+## Decisiones cerradas (no volver a preguntar)
+
+- **Catálogo y Changelog:** ver Recursos. El catálogo es `catalogo.md`; el Changelog se lee en vivo por MCP.
+- **Figma:** usar el conector de Figma ya cargado (`get_metadata`, `get_design_context`, `get_screenshot`, `get_variable_defs`).
+  Los conectores `plugin:design:*` pueden fallar por proxy: ignóralos.
+- **Menu y Footer** son componentes del archivo Figma **"R4 Design System | Templates | 1.0"** (generación antigua, pero se
+  siguen usando de momento). No están en el catálogo. Se reconstruyen desde ese archivo en `pendientes/`, como no oficiales.
+  En páginas de proceso el Menu es `Type=Process` y no hay Footer (la pantalla del doble factor no lo lleva: es coherente).
+  `_Browser` es solo marco de presentación: **no se construye**.
+- **Stack del prototipo:** lo único conocido de IT es que usa **Vue.js**; Jon no sabe más hasta dar acceso al repo. Hasta
+  entonces **decide tú sin preguntar**: Vite + Vue 3 (`<script setup>`) + TypeScript, CSS plano con variables CSS (tokens
+  semánticos) y container queries, sin Tailwind, Router ni Pinia. Provisional: se alinea con IT cuando llegue el repo.
+- **Hasta tener acceso al repo de IT, creas tú todos los componentes** (incluso los `VUE` del catálogo), en `pendientes/`.
+- **Nombres en Figma con errata:** la propiedad del Wrapper aparece como `backgroundCorlor`. En código usa `backgroundColor`.
+- **Orden en el DOM:** manda el orden de lectura lógico (título → contenido → acción), no el orden de capas de Figma.
+- **Datos de prototipo** (QR, claves, textos que vendrían de backend): usa valores de ejemplo y señálalos.
 
 ## Fuentes de verdad
 
