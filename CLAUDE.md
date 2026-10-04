@@ -27,13 +27,31 @@ No todos los componentes diseñados en Figma están desarrollados en Vue: de ah�
 - Arquitectura de tokens → https://renta4.atlassian.net/wiki/spaces/DIS/pages/3694592029/Arquitectura+de+tokens
 - Explicación de la estructura de los componentes → https://renta4.atlassian.net/wiki/spaces/DIS/pages/2524512346/Componentes
 - Listado de los actuales componentes → https://renta4.atlassian.net/wiki/spaces/DIS/database/3145597151?atl_f=PAGETREE
-  (página de tipo *database*: el conector de Atlassian solo devuelve metadatos; para leer las filas, pide a Jon un export CSV)
+  (página de tipo *database*: el conector solo devuelve metadatos). **El listado ya está volcado en `docs/design-system/catalogo.md`
+  y es la fuente que se usa. No pidas a Jon un CSV ni el listado: está en la documentación.**
 - Carpeta padre de Primitivos → https://renta4.atlassian.net/wiki/spaces/DIS/pages/2846457858/Primitivos
 - Carpeta padre de Específicos → https://renta4.atlassian.net/wiki/spaces/DIS/pages/2822045728/Espec+ficos
 - Anatomía de páginas de procesos → https://renta4.atlassian.net/wiki/spaces/DIS/pages/3497656350/P+ginas+de+Procesos
 - Componente Wrapper → https://renta4.atlassian.net/wiki/spaces/DIS/pages/3767762951/Wrapper
 - **Changelog de cambios** (cambios solicitados a componentes vía Jira Service Management; página estándar, legible por MCP) → https://renta4.atlassian.net/wiki/spaces/DIS/pages/3832610825/Changelog+cambios
   Indica qué se pidió cambiar, **no** si ya está implementado en Vue.
+  Lectura por MCP de Atlassian: `getConfluencePage` con `cloudId: renta4.atlassian.net`, `pageId: 3832610825`,
+  `contentFormat: markdown` (funciona; hay que cargar la herramienta con ToolSearch). `catalogo.md` solo resume sus entradas
+  clave: **para cada componente, léelo en vivo** (paso 0 del flujo) y no vuelvas a preguntar a Jon por él.
+
+## Decisiones cerradas (no volver a preguntar)
+
+- **Catálogo y Changelog:** ver arriba. El catálogo es `catalogo.md`; el Changelog se lee en vivo por MCP.
+- **Figma:** usar el conector de Figma ya cargado (`get_metadata`, `get_design_context`, `get_screenshot`, `get_variable_defs`).
+  Si falla, no pidas a Jon que lo arregle sin haberlo probado antes. Los conectores `plugin:design:*` pueden fallar por proxy: ignóralos.
+- **Menu y Footer** no están en el catálogo: son parte de la **Template** (`mediaQuery`) y se construyen en `pendientes/`
+  como no oficiales. En páginas de proceso el Menu es `Type=Process` y no hay Footer. `_Browser` es solo marco de
+  presentación en Figma: **no se construye**.
+- **Stack del prototipo:** Vite + Vue 3 (`<script setup>`) + TypeScript; CSS plano con variables CSS (tokens semánticos
+  desde `get_variable_defs`) y container queries; sin Tailwind, Router ni Pinia. Cámbialo solo si Jon indica otro.
+- **Nombres en Figma con errata:** la propiedad del Wrapper aparece como `backgroundCorlor`. En código usa `backgroundColor`.
+- **Orden en el DOM:** manda el orden de lectura lógico (título → contenido → acción), no el orden de capas de Figma.
+- **Datos de prototipo** (QR, claves, textos que vendrían de backend): usa valores de ejemplo y señálalos.
 
 ### Figma
 
