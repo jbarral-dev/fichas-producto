@@ -59,9 +59,12 @@ No todos los componentes diseñados en Figma están desarrollados en Vue: de ah�
   siguen usando de momento). No están en el catálogo. Se reconstruyen desde ese archivo en `pendientes/`, como no oficiales.
   En páginas de proceso el Menu es `Type=Process` y no hay Footer (la pantalla del doble factor no lo lleva: es coherente).
   `_Browser` es solo marco de presentación: **no se construye**.
-- **Stack del prototipo:** lo único conocido de IT es que usa **Vue.js**; Jon no sabe más hasta dar acceso al repo. Hasta
-  entonces **decide tú sin preguntar**: Vite + Vue 3 (`<script setup>`) + TypeScript, CSS plano con variables CSS (tokens
-  semánticos) y container queries, sin Tailwind, Router ni Pinia. Provisional: se alinea con IT cuando llegue el repo.
+- **Stack del prototipo:** lo único conocido de IT es que usa **Vue.js**; Jon no sabe más hasta dar acceso al repo. **En el
+  equipo de Jon no se puede instalar Node.js ni usar npm** (proxy corporativo y sin admin): no propongas nada que lo requiera.
+  Stack **sin build**: Vue 3 como módulo ES local (`vendor/vue.esm-browser.prod.js`, descargado una vez por Jon), componentes
+  como módulos `.js` (`defineComponent` + `template`, mismas props y nombres que en Figma), CSS plano con variables CSS
+  (tokens semánticos) y container queries. Se sirve con `serve.ps1` (PowerShell, localhost). Sin Tailwind, Router ni Pinia.
+  Provisional: al llegar el repo de IT, cada componente se migra a su formato (SFC) o se sustituye por el oficial.
 - **Hasta tener acceso al repo de IT, creas tú todos los componentes** (incluso los `VUE` del catálogo), en `pendientes/`.
 - **Tokens:** los componentes consumen variables (tokens) definidas en el archivo Figma **Primitivos 1.2**
   (`LXKe53jePjDEAVhdYCU4ed`). Hasta tener el repo de IT, **este repo debe declararlas** (excepción a "no copies contenido
