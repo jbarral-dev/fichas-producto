@@ -22,6 +22,7 @@
   --accent-link: #9d4858;
 
   --surface-subtle: #f7f7f7;
+  --secondary-light: #fbeee2; /* R4Wrapper backgroundColor=brandSecondary (valor de la doc de Confluence) */
 
   /* ── Color · estados (hover, pressed, disabled, foco) ─ */
   --accent-hover: #50101c;
@@ -59,7 +60,7 @@
   --size-body-m: 16px;
   --size-body-l: 18px;
   --size-body-xl: 20px;
-  --size-heading-s: 24px; /* modo desktop; tablet 22, mobile 20 (ver R4Section.css) */
+  --size-heading-s: 24px; /* modo desktop; tablet 22, mobile 20 (modos, más abajo) */
   --size-heading-m: 32px;
   --line-height-body-s: 20px;
   --line-height-body-m: 24px;
@@ -88,8 +89,8 @@
   /* Escala v2 (docs/templates-y-wrapper.md). Figma aún usa wrapper/paddingDefault y wrapper/paddingRelaxed (ambos 48). */
   --wrapper-paddingdefault: 48px;
   --wrapper-paddingrelaxed: 48px;
-  /* Token de la propuesta v2: apertura de página, ignora la density. DECLARADO POR DOCUMENTACIÓN, no extraído de Figma. */
-  --spacing-page-start: 48px;
+  /* Padding-top del primer R4Wrapper de la página (doc R4Wrapper en Confluence: 48/40/32). DECLARADO POR DOCUMENTACIÓN, no extraído de Figma. */
+  --wrapper-paddingtopfirstwrapper: 48px;
 
   /* ── Componentes ──────────────────────────────────── */
   --component-button-size-large: 40px;
@@ -166,9 +167,11 @@
   .r4-layout-modes {
     --wrapper-paddingdefault: 40px;
     --wrapper-paddingrelaxed: 40px;
-    --spacing-page-start: 40px;
+    --wrapper-paddingtopfirstwrapper: 40px;
     --r4-density-compact: 28px;
     --r4-density-relaxed: 56px;
+    --size-heading-s: 22px;
+    --line-height-heading-s: 26px;
     --size-heading-m: 28px;
     --line-height-heading-m: 32px;
     --menuheight: 56px;
@@ -180,11 +183,13 @@
   .r4-layout-modes {
     --wrapper-paddingdefault: 32px;
     --wrapper-paddingrelaxed: 32px;
-    --spacing-page-start: 32px;
+    --wrapper-paddingtopfirstwrapper: 32px;
     --r4-density-compact: 24px;
     --r4-density-relaxed: 48px;
     --grid-containerpadding: 12px;
     --containerpadding: 12px;
+    --size-heading-s: 20px;
+    --line-height-heading-s: 24px;
     --size-heading-m: 24px;
     --line-height-heading-m: 28px;
     --grid-columns: 4;

@@ -21,3 +21,5 @@
   min-width: 0;
   overflow-wrap: anywhere;
 }
+
+.r4-notification__title { font-weight: var(--font-weight-bold); }

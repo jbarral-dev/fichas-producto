@@ -142,7 +142,8 @@ ningún componente, ni siquiera los marcados como `VUE` en el catálogo. Aplica 
 4. Lo que siga sin existir en la librería se queda en `pendientes/`, marcado como no oficial.
 5. Borra la sección "Estado actual" y el aviso de fase temporal del inicio de este archivo.
 
-Para que la sustitución sea fácil: mantén en cada componente reconstruido los **mismos nombres y props que tiene en Figma**, no añadas API propia que no esté en el diseño, y no mezcles lógica de pantalla dentro de ellos.
+Para que la sustitución sea fácil: la **API del componente reconstruido es la de la tabla "API componente" de su página de Confluence** (espacio DIS; búscala con `searchConfluenceUsingCql`: `space = DIS AND title ~ "R4Nombre"`), **no las props de Figma**: la doc lo dice ("no se corresponden 1:1 con la API en código"). Las props de Figma que solo existen para diseñar (`showHeader`, `showX`, `mediaQuery`, `interaction`/estados, `content`) se **deducen o las resuelve el CSS**. Si una página no tiene tabla de API, usa las props de Figma y dilo. No añadas API propia (si hace falta un extra, como `v-model`, márcalo en la cabecera) y no mezcles lógica de pantalla dentro de los componentes.
+Lee **siempre** la página de Confluence del componente (API, accesibilidad: roles, orden de foco, `aria-*`) antes de reconstruirlo, además de Figma.
 
 ## Flujo obligatorio para cada pieza de UI
 
@@ -191,7 +192,8 @@ Aplícala por defecto y avisa si Figma muestra otra cosa.
 
 Detalle en el documento de ejes agnósticos importado al final.
 
-- `mediaQuery` **solo** existe en Template, Wrapper, Menu y Footer. Dentro, se usan ejes semánticos (`size`, `columns`, `density`).
+- **`mediaQuery` no existe en desarrollo** (es una limitación de Figma): **el CSS controla los media/container queries**. Ningún componente tiene prop `mediaQuery` (ni Template, Wrapper, Menu o Footer); los ejes de dispositivo de Figma se resuelven con el ancho del contenedor `r4page` y las variables por modo (Layout, Typography, 1. Grid). Dentro se usan ejes semánticos (`size`, `columns`, `density`).
+- **Tablet: nunca se diseña.** Solo hay las guidelines responsive (breakpoints, paddings; Confluence "Páginas de Procesos" y R4Wrapper) y las variables de Typography por modo. Adapta tablet tú, **de forma consistente** con desktop y mobile (mismo contenido que desktop salvo que la doc diga otra cosa, tokens de modo Tablet, rejilla de 8 columnas) y no vuelvas a preguntar por ello.
 - El comportamiento responsive se resuelve con **container queries** (ancho del contenedor, no del viewport).
 - R4Stats: desktop ancho completo `columns` 3–4 + `size=large` · media caja o modal `columns=2` + `small` · tablet `2` + `large` · mobile `1` + `small`.
 - R4Tabs (detalle en el documento importado al final): `fixed` mientras ninguna etiqueta necesite truncarse; si no, `scrollable`. Mobile con 2–3 tabs → `fixed`.

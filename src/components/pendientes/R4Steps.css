@@ -123,3 +123,7 @@
   gap: var(--r4-step-content-gap);
   width: 100%;
 }
+
+/* indicator=icon: R4Icon plain neutralDark de 16 px (medium) o 20 px (large) */
+.r4-step-item__icon { width: 16px; height: 16px; color: var(--text-default); }
+.r4-step-item--large .r4-step-item__icon { width: 20px; height: 20px; }

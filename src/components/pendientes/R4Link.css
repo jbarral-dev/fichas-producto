@@ -31,3 +31,8 @@
   cursor: not-allowed; /* Changelog SM-19378 */
 }
 .r4-link--standalone.r4-link--disabled:hover { text-decoration: none; }
+
+/* Iconos de 16 px (small/medium) o 18 px (large) */
+.r4-link--small .r4-icon,
+.r4-link--medium .r4-icon { width: 16px; height: 16px; }
+.r4-link--large .r4-icon { width: 18px; height: 18px; }

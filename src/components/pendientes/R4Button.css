@@ -34,7 +34,6 @@
 
 /* ── variant=primary ── */
 .r4-button--primary {
-  width: 100%;
   background: var(--accent-default);
   color: var(--accent-text-on-accent);
   font-weight: var(--font-weight-bold);
@@ -74,7 +73,7 @@
   color: var(--accent-text);
   font-weight: var(--font-weight-bold);
 }
-.r4-button--secondary:not(.r4-button--content-icon) { width: 100%; }
+
 .r4-button--secondary:hover {
   box-shadow: inset 0 0 0 var(--components-button-global-linewidth) var(--component-button-secondary-border-hover);
   background: var(--component-button-secondary-bg-hover);
@@ -97,3 +96,7 @@
 /* En content=icon el glifo es #0B0B0B en Figma */
 .r4-button--secondary.r4-button--content-icon { color: var(--text-default); }
 .r4-button--secondary.r4-button--content-icon:disabled { color: var(--text-disabled); }
+
+/* width=full-width (API): 100 % del contenedor; auto (por defecto): ajustado al contenido */
+.r4-button--full-width { display: flex; width: 100%; }
+.r4-button:not(.r4-button--full-width) { display: inline-flex; }

@@ -1,34 +1,31 @@
 // PENDIENTE-IT: no oficial. Sustituir cuando exista en la librería Vue.
-// Reconstrucción desde Figma (era VUE en el catálogo; Changelog SM-19075: variante standalone). Props como en Figma:
-// text, showText, iconLeft, showIconLeft, iconRight, showIconRight, size, type, interaction (estado: lo resuelve CSS).
-// Los estados hover/focus/disabled se han leído para size small y medium; large reutiliza el mismo patrón sin haberse leído.
-import { defineComponent } from '../../../vendor/vue.esm-browser.prod.js'
-import _Icon from '../../icons/_Icon.js'
+// Reconstrucción desde Figma (era VUE en el catálogo; Changelog SM-19075: variante standalone). API = "API componente" de
+// Confluence (R4Link, 3750526981): type (standalone | inline), size (small | medium | large), href (obligatorio), disabled,
+// iconLeft / iconRight (Component | null; solo en standalone). El texto va en el slot por defecto. Los estados
+// (default/hover/focus/disabled) los resuelve el CSS. disabled → aria-disabled="true" + tabindex="-1" (sin href).
+// Los estados hover/focus/disabled se han leído en Figma para small y medium; large reutiliza el mismo patrón sin haberse leído.
+import { defineComponent, computed } from '../../../vendor/vue.esm-browser.prod.js'
 
 export default defineComponent({
   name: 'R4Link',
-  components: { Icon: _Icon },
   props: {
-    text: { type: String, default: '' },
-    showText: { type: Boolean, default: true },
-    iconLeft: { type: String, default: 'ic-arrow-left' },
-    showIconLeft: { type: Boolean, default: false },
-    iconRight: { type: String, default: 'ic-arrow-right' },
-    showIconRight: { type: Boolean, default: false },
-    size: { type: String, default: 'medium', validator: (v) => ['small', 'medium', 'large'].includes(v) },
     type: { type: String, default: 'standalone', validator: (v) => ['standalone', 'inline'].includes(v) },
-    href: { type: String, default: '#' },
+    size: { type: String, default: 'small', validator: (v) => ['small', 'medium', 'large'].includes(v) },
+    href: { type: String, required: true },
     disabled: { type: Boolean, default: false },
+    iconLeft: { type: [Object, Function], default: null },
+    iconRight: { type: [Object, Function], default: null },
   },
-  computed: {
-    iconPx() { return this.size === 'large' ? 18 : 16 },
+  setup(props) {
+    const standalone = computed(() => props.type === 'standalone')
+    return { standalone }
   },
   template: `
     <a class="r4-link" :class="['r4-link--' + size, 'r4-link--' + type, { 'r4-link--disabled': disabled }]"
-       :href="disabled ? undefined : href" :aria-disabled="disabled ? 'true' : undefined">
-      <Icon v-if="showIconLeft" :name="iconLeft" :size="iconPx" />
-      <span v-if="showText" class="r4-link__text"><slot>{{ text }}</slot></span>
-      <Icon v-if="showIconRight" :name="iconRight" :size="iconPx" />
+       :href="disabled ? undefined : href" :aria-disabled="disabled ? 'true' : undefined" :tabindex="disabled ? -1 : undefined">
+      <component :is="iconLeft" v-if="standalone && iconLeft" />
+      <span class="r4-link__text"><slot /></span>
+      <component :is="iconRight" v-if="standalone && iconRight" />
     </a>
   `,
 })

@@ -52,3 +52,6 @@
 
 .r4-progress-bar__segment { flex: 1 1 0; height: 4px; }
 .r4-progress-bar__segment--done { background: var(--colors-base-primary-border); }
+
+/* Sin botón de cierre se mantiene su hueco para que el título siga centrado */
+.r4-progress-bar__action--empty { pointer-events: none; }
