@@ -163,6 +163,59 @@ Antes de escribir markup, consulta el catálogo (importado aquí abajo) y sigue 
 3. **Solo AEM, SIN FIGMA, o no aparece en el catálogo:** **para y avisa a Jon.** No inventes el componente.
 4. Si una pantalla necesita algo que no cubre ningún componente, no lo improvises con HTML suelto: pregunta.
 
+## Dos flujos de trabajo
+
+- **Flujo A — desde Figma:** Jon da un enlace de Figma y se desarrolla ese diseño (flujo obligatorio de arriba + reglas de este archivo).
+- **Flujo B — desde prompt:** Jon describe una página o pieza **sin diseño** y se desarrolla con el conocimiento del Sistema de Diseño.
+  Se activa cuando el encargo no trae enlace de Figma. Todas las reglas de este archivo siguen vigentes; el Flujo B añade lo siguiente.
+
+### Flujo B: desarrollo desde prompt
+
+**Principio:** no se diseña, se **compone**. Solo con componentes del catálogo, tokens semánticos y reglas de página. Si el prompt
+exige algo que el sistema no cubre, se para y se pregunta (regla 3 y 4 del flujo obligatorio): nunca se inventa HTML suelto,
+estilos ni componentes. Sin diseño no hay "interpretación visual libre": lo que no se pueda justificar con el sistema, se pregunta o se marca.
+
+**Pasos (en este orden):**
+
+1. **Interpretar el prompt.** Extrae: tipo de página, objetivo del usuario, contenido (textos, datos), acciones, estados (vacío, error,
+   cargando, éxito), si es página de proceso, de feedback, de detalle, landing…, y si hay mobile/tablet específico. Lo que falte y
+   **afecte a la composición**, se pregunta en una sola tanda (máx. 4 preguntas); lo demás se infiere y se lista al final.
+2. **Elegir la anatomía de página.** Con `templates-y-wrapper.md` y Confluence (Páginas de Procesos, R4Wrapper): Template
+   (Process / Landing / Detail / Post / States), Menu y Footer según el tipo, superficie (`app` gris / `marketing` blanca) y estructura
+   Wrapper → Slot → Grid. Si no hay anatomía para ese tipo (dashboard, listados, autenticación…), **proponla a Jon antes de construir**.
+3. **Mapear necesidades → componentes.** Haz la tabla "necesidad → componente → estado en catálogo → ¿ya en `pendientes/`?".
+   Usa el catálogo y el Changelog (en vivo) y la página de Confluence de cada componente (API, accesibilidad). Reglas:
+   - Reutiliza lo de `pendientes/`; no lo recrees.
+   - Si existe en Figma y no está reconstruido: léelo entero (Figma + Confluence) y reconstrúyelo como en el flujo obligatorio (rama 2).
+   - Si es solo AEM, SIN FIGMA o no aparece: **para y avisa** con la alternativa más cercana del sistema.
+   - Preferencia por componentes específicos del sistema antes que combinar primitivos a mano.
+4. **Componer con las reglas de página**, sin saltárselas: todo dentro de un Wrapper; primer Wrapper automático; una sola density;
+   banda de color en el Wrapper; no dos Wrappers consecutivos con el mismo fondo; Hero y PageTitle excluyentes; interactividad con un
+   solo elemento interactivo; un solo `<h1>` y jerarquía de encabezados correcta; ancho de contenido y columnas por la Template.
+   Espaciado, color y tipografía **solo con tokens semánticos**; si falta un token, extráelo de Primitivos antes de usarlo.
+5. **Derivar el responsive** (desktop 12 col, tablet 8, mobile 4) de las guidelines: columnas, paddings, tokens por modo y los ejes
+   semánticos de cada componente (`size`, `columns`, `density`, `layout`). Sin diseño de mobile/tablet, **adapta de forma consistente**
+   (mismo contenido y orden salvo que el sistema indique otra cosa) y no pidas el diseño.
+6. **Contenido.** Usa los textos del prompt tal cual. Lo que falte: texto de ejemplo claramente marcado (datos de prototipo) y respetando
+   la guía de contenido de cada componente (p. ej. botones en infinitivo, títulos orientados a la acción).
+7. **Accesibilidad.** Aplica la de cada componente (roles, orden de foco y de lectura, `aria-*`) y la de página (landmarks, un `<h1>`,
+   foco visible, áreas táctiles de 44 px, `aria-live` en estados dinámicos).
+8. **Verificar.** Arranca `serve.ps1` (preview), comprueba sin errores de consola y revisa a **1512, 800 y 390 px**: sin scroll horizontal,
+   cabecera fija si es de proceso, contenido correcto por breakpoint. Mide con el DOM lo que se pueda contrastar con las guías de
+   Confluence (columnas, paddings, tamaños). Hazlo antes de dar nada por bueno.
+9. **Entregar.** Commit. Y el resumen final, siempre con estas tres listas:
+   - **Decisiones inferidas** (qué has elegido sin que el prompt lo dijera y por qué, citando la regla o doc del sistema).
+   - **Componentes**: reutilizados · reconstruidos en `pendientes/` (y cuáles eran `VUE` en el catálogo) · lo que no se reconstruyó de cada uno.
+   - **Pendiente / dudas**: lo que habría que validar con Jon o con diseño (p. ej. variantes que no existen, copys, tablet).
+
+**Qué NO hacer en el Flujo B:** inventar componentes, props o variantes; usar valores literales de color/espaciado; mezclar más de
+un estilo de Wrapper/density; copiar patrones de otro producto; dar por válido sin verificar a los tres anchos; tratar los datos de
+ejemplo como reales.
+
+**Formato recomendado del prompt** (Jon puede darlo incompleto; se pregunta lo imprescindible):
+`tipo de página` · `objetivo` · `contenido y textos` · `acciones principales` · `componentes que sí/no quiere` · `estados a cubrir` ·
+`datos reales vs de ejemplo` · `nivel de la página (para el breadcrumb)`.
+
 ## Convenciones
 
 - Componentes `R4Nombre`; subelementos internos con `_` (`_TabItem`). Props y valores de variante en camelCase.
