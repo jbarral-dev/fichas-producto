@@ -3,8 +3,8 @@
 // Doc de Confluence "Input Text (variante Phone)" (ene 2025): Pre Tab "+34" siempre, placeholder "000 000 000", el formato incorrecto se
 // indica en el caption. No hay tabla de API: se usa la de R4InputText (label, caption, required, placeholder, status, modelValue).
 // Reconstruido: Pre Tab "+34" con chevron-down (solo visual: no hay selector de prefijo definido), estados default/hover/focused/typing/
-// filled/disabled/error. El campo mide lo que su contenido (214 px en Figma), no el ancho del formulario. Usa los tokens de la
-// generación "Interaction/Input/*" que emplea `_Phone` en Figma (distintos de los de `_Text`: p. ej. borde #ABABAB frente a #C7C7C7).
+// filled/disabled/error. Por decisión de Jon (el `_Phone` de Figma es un componente viejo): el campo ocupa el 100 % del padre y usa los
+// tokens nuevos (component/input/*, feedback/*) como R4InputText, no los antiguos "Interaction/Input/*" de `_Phone`.
 import { defineComponent, computed } from '../../../vendor/vue.esm-browser.prod.js'
 import Icon from '../../icons/_Icon.js'
 
