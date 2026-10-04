@@ -1,0 +1,83 @@
+.r4-steps {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.r4-step-item {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spacing-3);
+  padding: var(--spacing-0) var(--spacing-0) var(--spacing-1);
+}
+
+.r4-step-item--last { padding-bottom: var(--spacing-0); }
+
+.r4-step-item__indicator-and-line {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-1);
+  align-self: stretch;
+  flex: none;
+}
+
+.r4-step-item__indicator {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 100px;
+  background: var(--surface-muted);
+  color: var(--text-default);
+  font: var(--font-weight-bold) var(--size-body-m) / var(--line-height-body-m) var(--font-family-body);
+}
+
+/* Línea de puntos entre indicadores. Estilo (dashed, --border-default) inferido de la captura, no leído de Figma. */
+.r4-step-item__line {
+  flex: 1 1 0;
+  min-height: 1px;
+  border-left: 1px dashed var(--border-default);
+}
+
+.r4-step-item__content {
+  display: flex;
+  flex: 1 1 0;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--spacing-3);
+  min-width: 0;
+  padding-bottom: var(--spacing-6);
+}
+
+.r4-step-item--last .r4-step-item__content { padding-bottom: var(--spacing-0); }
+
+.r4-step-item__texts {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-1);
+  width: 100%;
+  padding-top: var(--spacing-1);
+}
+
+.r4-step-item__title {
+  font: var(--font-weight-bold) var(--size-body-m) / var(--line-height-body-m) var(--font-family-body);
+  color: var(--text-default);
+}
+
+.r4-step-item__description {
+  font: var(--font-weight-regular) var(--size-body-s) / var(--line-height-body-s) var(--font-family-body);
+  color: var(--text-subdued);
+}
+
+.r4-step-item__slot {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--spacing-3);
+  width: 100%;
+}

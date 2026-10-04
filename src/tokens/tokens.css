@@ -1,0 +1,94 @@
+/*
+ * Tokens R4 declarados en este repo mientras no haya acceso al repo de IT.
+ * Origen: archivo Figma "R4 Design System | Primitivos | 1.2" (LXKe53jePjDEAVhdYCU4ed), extraídos con get_variable_defs
+ * desde las pantallas construidas. Nombre = nombre del token en Figma, en minúsculas, con "/" y espacios → "-".
+ * Los componentes consumen SOLO estos tokens (nunca valores literales).
+ * Se amplía pantalla a pantalla: si un componente necesita un token que no está aquí, extraerlo antes de construir.
+ * Los valores son los resueltos (get_variable_defs no devuelve las capas primitivo → semántico).
+ */
+:root {
+  /* ── Color · superficie ───────────────────────────── */
+  --surface-page: #f7f7f7;
+  --surface-default: #ffffff;
+  --surface-muted: #e0e0e0;
+
+  /* ── Color · texto ────────────────────────────────── */
+  --text-default: #0b0b0b;
+  --text-subdued: #3b3b3b;
+
+  /* ── Color · acento y enlace ──────────────────────── */
+  --accent-default: #851a2e;
+  --accent-text-on-accent: #ffffff;
+  --accent-link: #9d4858;
+
+  /* ── Color · borde ────────────────────────────────── */
+  --border-default: #c7c7c7;
+  --border-subtle: #e0e0e0;
+
+  /* ── Color · feedback (info) ──────────────────────── */
+  --feedback-info-bg: #f6f9fe;
+  --feedback-info-border: #1e5a7f;
+  --feedback-info-icon: #1e5a7f;
+
+  /* ── Tipografía ───────────────────────────────────── */
+  --font-family-body: 'Open Sans', sans-serif;
+  --font-family-headings: 'Exo 2', sans-serif;
+  --font-weight-regular: 400;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  --size-body-s: 14px;
+  --size-body-m: 16px;
+  --size-body-l: 18px;
+  --size-heading-m: 32px;
+  --line-height-body-s: 20px;
+  --line-height-body-m: 24px;
+  --line-height-body-l: 26px;
+  --line-height-heading-m: 36px;
+
+  /* ── Espaciado ────────────────────────────────────── */
+  --spacing-0: 0px;
+  --spacing-1: 4px;
+  --spacing-2: 8px;
+  --spacing-3: 12px;
+  --spacing-4: 16px;
+  --spacing-6: 24px;
+  --spacing-8: 32px;
+
+  /* ── Grid y contenedor ────────────────────────────── */
+  --grid-gutter: 24px;
+  --grid-containerpadding: 24px;
+  --grid-containermaxwidth: 1368px;
+
+  /* ── Wrapper (density) · desktop ──────────────────── */
+  /* Escala v2 (docs/templates-y-wrapper.md). Figma aún usa wrapper/paddingDefault y wrapper/paddingRelaxed (ambos 48). */
+  --wrapper-paddingdefault: 48px;
+  --wrapper-paddingrelaxed: 48px;
+  /* Token de la propuesta v2: apertura de página, ignora la density. DECLARADO POR DOCUMENTACIÓN, no extraído de Figma. */
+  --spacing-page-start: 48px;
+
+  /* ── Componentes ──────────────────────────────────── */
+  --component-button-size-large: 40px;
+  --component-button-radius: 8px;
+  --component-notification-radius: 0px;
+  --components-steps-global-marginxs: 8px;
+  --components-menu-component-darkitembg: #3b3b3b;
+  --menuheight: 76px;
+  --containerpadding: 24px;
+  --contentmaxwidth: 1368px;
+
+  /* ── Generación anterior (colors/*, space/*, size/*) · en uso en Menu, R4ProgressBar y R4Section ── */
+  --colors-neutral-bgwhite: #ffffff;
+  --colors-neutral-colorbgbase: #ffffff;
+  --colors-neutral-textwhite: #ffffff;
+  --colors-neutral-textdark: #0b0b0b;
+  --colors-neutral-iconwhite: #ffffff;
+  --colors-neutral-icontdark: #0b0b0b;
+  --colors-neutral-borderlighter: #e0e0e0;
+  --colors-base-primary-border: #851a2e;
+  --colors-backgrounds-bgsecondary: #e6e6e6;
+  --space-padding-paddingextralarge: 32px;
+  --space-margin-marginsm: 12px;
+  --space-margin-marginxs: 8px;
+  --size-base-sizesm: 12px;
+  --size-height-controlheightsm: 24px;
+}

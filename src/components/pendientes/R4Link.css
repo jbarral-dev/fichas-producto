@@ -1,0 +1,17 @@
+.r4-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-1);
+  color: var(--accent-link);
+  font: var(--font-weight-semibold) var(--size-body-s) / var(--line-height-body-s) var(--font-family-body);
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.r4-link:hover { text-decoration: underline; }
+
+.r4-link:focus-visible {
+  outline: 2px solid var(--text-default);
+  outline-offset: 2px;
+}

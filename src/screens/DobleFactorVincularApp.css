@@ -1,0 +1,19 @@
+/* Layout propio de la pantalla (no del sistema de diseño). Figma: Grid de 12 col, contenido en columnas 4–9, gap vertical 48. */
+.screen-2fa__grid { row-gap: 48px; }
+
+.screen-2fa__col { grid-column: 4 / span 6; }
+
+.screen-2fa__content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-6);
+}
+
+.screen-2fa__qr-steps {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-6);
+  width: 100%;
+}
+
+.screen-2fa__steps { flex: 1 1 0; min-width: 0; }

@@ -1,0 +1,23 @@
+.r4-notification {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spacing-2);
+  width: 100%;
+  padding: var(--spacing-4);
+  box-shadow: inset 0 0 0 0.5px var(--feedback-info-border); /* borde interior: Figma incluye el trazo en el tamaño */
+  border-radius: var(--component-notification-radius);
+  background: var(--feedback-info-bg);
+  color: var(--text-default);
+  font: var(--font-weight-regular) var(--size-body-m) / var(--line-height-body-m) var(--font-family-body);
+}
+
+.r4-notification__icon {
+  flex: none;
+  color: var(--feedback-info-icon);
+}
+
+.r4-notification__body {
+  flex: 1 1 0;
+  min-width: 0;
+  overflow-wrap: anywhere;
+}

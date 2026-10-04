@@ -1,0 +1,36 @@
+.r4-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-2);
+  width: 100%;
+  height: var(--component-button-size-large);
+  padding: 0 var(--spacing-4);
+  border: 0;
+  border-radius: var(--component-button-radius);
+  background: var(--accent-default);
+  color: var(--accent-text-on-accent);
+  font: var(--font-weight-bold) var(--size-body-l) / var(--line-height-body-l) var(--font-family-body);
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.r4-button__content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-2);
+  height: 100%;
+  white-space: nowrap;
+}
+
+.r4-button:focus-visible {
+  outline: 2px solid var(--text-default);
+  outline-offset: 2px;
+}
+
+/* Changelog SM-19378: elementos desactivados con cursor not-allowed. Estilo visual de disabled: no leído de Figma. */
+.r4-button:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
