@@ -63,7 +63,12 @@ No todos los componentes diseñados en Figma están desarrollados en Vue: de ah�
   entonces **decide tú sin preguntar**: Vite + Vue 3 (`<script setup>`) + TypeScript, CSS plano con variables CSS (tokens
   semánticos) y container queries, sin Tailwind, Router ni Pinia. Provisional: se alinea con IT cuando llegue el repo.
 - **Hasta tener acceso al repo de IT, creas tú todos los componentes** (incluso los `VUE` del catálogo), en `pendientes/`.
-- **Nombres en Figma con errata:** la propiedad del Wrapper aparece como `backgroundCorlor`. En código usa `backgroundColor`.
+- **Tokens:** los componentes consumen variables (tokens) definidas en el archivo Figma **Primitivos 1.2**
+  (`LXKe53jePjDEAVhdYCU4ed`). Hasta tener el repo de IT, **este repo debe declararlas** (excepción a "no copies contenido
+  de Figma"): extráelas con `get_variable_defs` y guárdalas en `src/tokens/` como variables CSS (`--nombre-del-token`,
+  mismo nombre y jerarquía que en Figma, `/` → `-`). Declara las dos capas (primitivos y semánticos), pero los
+  componentes **solo consumen semánticos**. Si un componente necesita un token que no está declarado, extráelo antes de
+  construir; no pongas valores literales. Cuando llegue el repo de IT, se sustituyen por los suyos.
 - **Orden en el DOM:** manda el orden de lectura lógico (título → contenido → acción), no el orden de capas de Figma.
 - **Datos de prototipo** (QR, claves, textos que vendrían de backend): usa valores de ejemplo y señálalos.
 
