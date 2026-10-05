@@ -178,6 +178,11 @@ Lee **siempre** la página de Confluence del componente (API, accesibilidad: rol
 
 Antes de escribir markup, consulta el catálogo (importado aquí abajo) y sigue este orden:
 
+-3. **Comprobación de accesos al empezar una sesión (antes de cualquier tarea que use Confluence o Figma).** El acceso NO está garantizado: depende de los conectores
+   de la cuenta de Jon, de su autenticación y de la red corporativa (en la 1.ª sesión los conectores `plugin:design:*` fallaron con "407 Proxy Authentication Required";
+   funcionaron los conectores de Atlassian y de Figma a nivel de cuenta). Haz una llamada barata a cada uno: Atlassian → `getAccessibleAtlassianResources` (o
+   `getConfluencePage` con una página de `fuentes-confluence.md`); Figma → `whoami` o `get_metadata` de un nodo conocido. Si alguno falla, **díselo a Jon con el error literal
+   y no continúes con datos de memoria ni con páginas alternativas**. Usa siempre los tools `mcp__<id>__...` que respondan; los `plugin:design:*` pueden fallar por proxy.
 -2. **REGLA CRÍTICA — FUENTES DE CONFLUENCE AUTORIZADAS.** La documentación de Confluence no está 100 % actualizada: **solo son fuente válida las páginas
    listadas en `docs/design-system/fuentes-confluence.md`** (decisión de Jon, 2026-10-05): Sistema de diseño, Componentes, el listado de componentes (database),
    Changelog cambios, Arquitecturas de tokens, Grids, Nomenclatura, Storybook, Control de Versiones, **todo lo que cuelga de** Primitivos y de Específicos,
