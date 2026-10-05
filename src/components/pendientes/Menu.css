@@ -3,7 +3,7 @@
   flex-direction: column;
   align-items: center;
   width: 100%;
-  background: var(--colors-neutral-colorbgbase);
+  background: var(--surface-default);
 }
 
 .menu__bar {
@@ -11,8 +11,8 @@
   align-items: center;
   justify-content: center;
   width: 100%;
-  height: var(--menuheight);
-  background: var(--components-menu-component-darkitembg);
+  height: var(--r4-menu-height);
+  background: var(--r4-menu-bg);
 }
 
 .menu__bar-content {
@@ -22,8 +22,8 @@
   justify-content: space-between;
   height: 100%;
   min-width: 0;
-  max-width: var(--contentmaxwidth);
-  padding-inline: var(--containerpadding);
+  max-width: var(--grid-containermaxwidth);
+  padding-inline: var(--grid-containerpadding);
 }
 
 .menu__branding {
@@ -36,8 +36,8 @@
 .menu__help {
   display: flex;
   align-items: center;
-  gap: var(--space-margin-marginxs);
-  color: var(--colors-neutral-textwhite);
+  gap: var(--spacing-2);
+  color: var(--text-on-inverse);
   font: var(--font-weight-semibold) var(--size-body-l) / var(--line-height-body-l) var(--font-family-body);
   text-decoration: none;
 }

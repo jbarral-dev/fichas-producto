@@ -1,0 +1,9 @@
+Desktop XL | Desktop | Tablet | Mobile
+screenWidth = 1440 | 1024 | 768 | 390
+grid/containerMaxWidth = 1368 | 1024 | 768 | 390
+grid/containerPadding = →F:spacing/6 | →F:spacing/6 | →F:spacing/6 | →F:spacing/3
+grid/gutter = →F:spacing/6 | →F:spacing/6 | →F:spacing/6 | →F:spacing/6
+wrapper/paddingRelaxed = →F:spacing/16 | →F:spacing/16 | →F:spacing/14 | →F:spacing/12
+wrapper/paddingDefault = →F:spacing/12 | →F:spacing/12 | →F:spacing/10 | →F:spacing/8
+wrapper/paddingCompact = →F:spacing/8 | →F:spacing/8 | →F:spacing/7 | →F:spacing/6
+wrapper/paddingTopFirstWrapper = →F:spacing/12 | →F:spacing/12 | →F:spacing/10 | →F:spacing/8

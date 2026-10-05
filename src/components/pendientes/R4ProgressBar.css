@@ -3,7 +3,7 @@
   flex-direction: column;
   align-items: center;
   width: 100%;
-  background: var(--colors-neutral-bgwhite);
+  background: var(--surface-default);
 }
 
 .r4-progress-bar__process {
@@ -11,10 +11,10 @@
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  max-width: var(--contentmaxwidth);
+  max-width: var(--grid-containermaxwidth);
   height: 56px;
-  padding-inline: var(--containerpadding);
-  background: var(--colors-neutral-bgwhite);
+  padding-inline: var(--grid-containerpadding);
+  background: var(--surface-default);
 }
 
 .r4-progress-bar__action {
@@ -27,7 +27,7 @@
   padding: 0;
   border: 0;
   background: none;
-  color: var(--colors-neutral-icontdark);
+  color: var(--icon-default);
   cursor: pointer;
 }
 
@@ -39,7 +39,7 @@
   flex: 1 1 0;
   min-width: 0;
   text-align: center;
-  color: var(--colors-neutral-textdark);
+  color: var(--text-default);
   font: var(--font-weight-bold) var(--size-body-m) / var(--line-height-body-m) var(--font-family-body);
 }
 
@@ -47,11 +47,11 @@
   display: flex;
   width: 100%;
   height: 4px;
-  background: var(--colors-backgrounds-bgsecondary);
+  background: var(--surface-muted);
 }
 
 .r4-progress-bar__segment { flex: 1 1 0; height: 4px; }
-.r4-progress-bar__segment--done { background: var(--colors-base-primary-border); }
+.r4-progress-bar__segment--done { background: var(--accent-border); }
 
 /* Sin botón de cierre se mantiene su hueco para que el título siga centrado */
 .r4-progress-bar__action--empty { pointer-events: none; }

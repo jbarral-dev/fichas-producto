@@ -1,0 +1,23 @@
+Desktop | Tablet | Mobile
+size/heading/2xl = 64 | 56 | 48
+size/heading/xl = 48 | 44 | 40
+size/heading/l = 40 | 36 | 32
+size/heading/m = 32 | 28 | 24
+size/heading/s = 24 | 22 | 20
+size/heading/xs = 20 | 18 | 16
+size/body/xl = 20 | 20 | 20
+size/body/l = 18 | 18 | 18
+size/body/m = 16 | 16 | 16
+size/body/s = 14 | 14 | 14
+size/body/xs = 12 | 12 | 12
+line-height/heading/2xl = 64 | 60 | 52
+line-height/heading/xl = 52 | 48 | 44
+line-height/heading/l = 44 | 40 | 36
+line-height/heading/m = 36 | 32 | 28
+line-height/heading/s = 28 | 26 | 24
+line-height/heading/xs = 24 | 22 | 20
+line-height/body/xl = 28 | 26 | 26
+line-height/body/l = 26 | 26 | 26
+line-height/body/m = 24 | 24 | 24
+line-height/body/s = 20 | 20 | 20
+line-height/body/xs = 16 | 16 | 16

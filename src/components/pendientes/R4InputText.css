@@ -47,10 +47,10 @@
 .r4-input-text__field {
   display: flex;
   align-items: center;
-  padding: 0 var(--components-input-global-controlpaddinghorizontal);
+  padding: 0 var(--spacing-3);
   border-radius: var(--component-input-radius);
   background: var(--r4-input-bg);
-  box-shadow: inset 0 0 0 var(--size-line-width-linewidth) var(--r4-input-border);
+  box-shadow: inset 0 0 0 var(--r4-line-width) var(--r4-input-border);
 }
 .r4-input-text__input {
   flex: 1 1 0;
@@ -75,23 +75,23 @@
 /* focused (sin valor): borde focused + sombra del status */
 .r4-input-text--default .r4-input-text__field:focus-within {
   --r4-input-border: var(--component-input-border-focused);
-  box-shadow: inset 0 0 0 var(--size-line-width-linewidth) var(--r4-input-border), var(--r4-input-focus);
+  box-shadow: inset 0 0 0 var(--r4-line-width) var(--r4-input-border), var(--r4-input-focus);
 }
 .r4-input-text--error .r4-input-text__field:focus-within,
 .r4-input-text--success .r4-input-text__field:focus-within {
-  box-shadow: inset 0 0 0 var(--size-line-width-linewidth) var(--r4-input-border), var(--r4-input-focus);
+  box-shadow: inset 0 0 0 var(--r4-line-width) var(--r4-input-border), var(--r4-input-focus);
 }
 
 /* typing (foco con valor): fondo default y borde focused, sin sombra */
 .r4-input-text__field:focus-within:has(.r4-input-text__input:not(:placeholder-shown)) {
   background: var(--component-input-bg-default);
-  box-shadow: inset 0 0 0 var(--size-line-width-linewidth) var(--component-input-border-focused);
+  box-shadow: inset 0 0 0 var(--r4-line-width) var(--component-input-border-focused);
 }
 
 /* disabled */
 .r4-input-text--disabled .r4-input-text__field {
   background: var(--component-input-bg-disabled);
-  box-shadow: inset 0 0 0 var(--size-line-width-linewidth) var(--component-input-border-default);
+  box-shadow: inset 0 0 0 var(--r4-line-width) var(--component-input-border-default);
 }
 .r4-input-text--disabled .r4-input-text__input,
 .r4-input-text--disabled .r4-input-text__input::placeholder { color: var(--text-disabled); cursor: not-allowed; /* Changelog SM-19378 */ }

@@ -20,7 +20,7 @@
   align-items: center;
   justify-content: center;
   gap: var(--spacing-2);
-  height: var(--components-button-global-controlheightlg);
+  height: var(--component-button-size-large);
 }
 
 .r4-button__text { white-space: nowrap; }
@@ -39,11 +39,11 @@
   font-weight: var(--font-weight-bold);
 }
 .r4-button--primary:hover { background: var(--accent-hover); }
-.r4-button--primary:active { background: var(--accent-pressed); color: var(--interaction-button-primary-textpressed); }
+.r4-button--primary:active { background: var(--accent-pressed); color: var(--accent-text-on-accent); }
 .r4-button--primary:focus-visible { outline: 0; box-shadow: var(--effect-card-focus-outline); }
 .r4-button--primary:disabled {
   background: var(--component-button-primary-bg-disabled);
-  box-shadow: inset 0 0 0 var(--components-button-global-linewidth) var(--component-button-primary-border-disabled);
+  box-shadow: inset 0 0 0 var(--r4-line-width) var(--component-button-primary-border-disabled);
   color: var(--text-disabled);
   cursor: not-allowed; /* Changelog SM-19378 */
 }
@@ -68,28 +68,28 @@
 
 /* ── variant=secondary (fondo blanco, trazo accent/border 1 px interior) ── */
 .r4-button--secondary {
-  box-shadow: inset 0 0 0 var(--components-button-global-linewidth) var(--accent-border);
+  box-shadow: inset 0 0 0 var(--r4-line-width) var(--accent-border);
   background: var(--surface-default);
   color: var(--accent-text);
   font-weight: var(--font-weight-bold);
 }
 
 .r4-button--secondary:hover {
-  box-shadow: inset 0 0 0 var(--components-button-global-linewidth) var(--component-button-secondary-border-hover);
+  box-shadow: inset 0 0 0 var(--r4-line-width) var(--component-button-secondary-border-hover);
   background: var(--component-button-secondary-bg-hover);
   color: var(--accent-text-hover);
 }
 .r4-button--secondary:active {
-  box-shadow: inset 0 0 0 var(--components-button-global-linewidth) var(--component-button-secondary-border-hover);
+  box-shadow: inset 0 0 0 var(--r4-line-width) var(--component-button-secondary-border-hover);
   background: var(--component-button-secondary-bg-pressed);
   color: var(--accent-text-hover);
 }
 .r4-button--secondary:focus-visible {
   outline: 0;
-  box-shadow: inset 0 0 0 var(--components-button-global-linewidth) var(--accent-border), var(--effect-card-focus-outline);
+  box-shadow: inset 0 0 0 var(--r4-line-width) var(--accent-border), var(--effect-card-focus-outline);
 }
 .r4-button--secondary:disabled {
-  box-shadow: inset 0 0 0 var(--components-button-global-linewidth) var(--component-button-primary-border-disabled);
+  box-shadow: inset 0 0 0 var(--r4-line-width) var(--component-button-primary-border-disabled);
   color: var(--text-disabled);
   cursor: not-allowed; /* Changelog SM-19378 */
 }

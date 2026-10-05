@@ -1,0 +1,18 @@
+/*
+ * Valores que los componentes usan en Figma pero que NO existen como variable en la colección actual de Primitivos 1.2
+ * (vienen de la generación antigua de variables o son derivados). MANUAL. Pendiente de decidir con diseño si pasan a Figma.
+ * Nombres con prefijo --r4- para distinguirlos de los tokens oficiales.
+ */
+:root {
+  --r4-line-width: 1px;                          /* antes Size/Line Width/lineWidth y Components/Button/Global/lineWidth */
+  --r4-menu-bg: var(--color-neutral-gray-600);   /* antes Components/Menu/Component/darkItemBg (#3B3B3B): sin token semántico en Theme */
+  --r4-menu-height: 76px;                        /* antes menuHeight (Layout, ya no existe): 76 desktop · 56 tablet y mobile */
+  --grid-columns: 12;                            /* Nº de columnas de la rejilla: 12 · 8 · 4 (docs "R4Wrapper" y "Páginas de Procesos") */
+}
+
+@container r4page (max-width: 1023px) {
+  .r4-layout-modes { --r4-menu-height: 56px; --grid-columns: 8; }
+}
+@container r4page (max-width: 767px) {
+  .r4-layout-modes { --grid-columns: 4; }
+}

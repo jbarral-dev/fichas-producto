@@ -66,12 +66,21 @@ No todos los componentes diseñados en Figma están desarrollados en Vue: de ah�
   (tokens semánticos) y container queries. Se sirve con `serve.ps1` (PowerShell, localhost). Sin Tailwind, Router ni Pinia.
   Provisional: al llegar el repo de IT, cada componente se migra a su formato (SFC) o se sustituye por el oficial.
 - **Hasta tener acceso al repo de IT, creas tú todos los componentes** (incluso los `VUE` del catálogo), en `pendientes/`.
-- **Tokens:** los componentes consumen variables (tokens) definidas en el archivo Figma **Primitivos 1.2**
-  (`LXKe53jePjDEAVhdYCU4ed`). Hasta tener el repo de IT, **este repo debe declararlas** (excepción a "no copies contenido
-  de Figma"): extráelas con `get_variable_defs` y guárdalas en `src/tokens/` como variables CSS (`--nombre-del-token`,
-  mismo nombre y jerarquía que en Figma, `/` → `-`). Declara las dos capas (primitivos y semánticos), pero los
-  componentes **solo consumen semánticos**. Si un componente necesita un token que no está declarado, extráelo antes de
-  construir; no pongas valores literales. Cuando llegue el repo de IT, se sustituyen por los suyos.
+- **Tokens = cascada de 6 capas con alias, NO una lista plana de hex.** Lee la página de Confluence "Arquitecturas de tokens"
+  (3694592029) antes de tocar tokens. Colecciones de Primitivos 1.2 (`LXKe53jePjDEAVhdYCU4ed`): Foundations (literales) →
+  Brand (Renta4 | Colombia) → Theme (Light | Dark) → Components; Typography (Desktop/Tablet/Mobile) y Layout (Desktop XL/Desktop/Tablet/Mobile).
+  Hasta tener el repo de IT, **este repo las declara** (excepción a "no copies contenido de Figma") en `src/tokens/`, **conservando los alias**
+  (`--surface-subtle: var(--color-neutral-gray-100)`; `--accent-default: var(--brand-accent-default)`). Reglas:
+  - **Nunca** vuelques valores resueltos (`get_variable_defs` devuelve hex ya resueltos: sirve para consultar, no para generar tokens).
+  - Los componentes consumen la capa **más alta posible**: Components > Theme > Brand > Foundations. Nunca hex ni literales; si no existe
+    token, se pregunta o va a `src/tokens/pending.css` (manual, prefijo `--r4-`) con el motivo. Los estilos de efecto de Figma van en `effects.css`.
+  - `foundations/brand/theme/components/typography/layout.css` están **GENERADOS** (no se editan): fuente `tools/tokens/*.txt` + `tools/generate-tokens.ps1`.
+    Para actualizar desde Figma: volcar la colección con `use_figma` (nombre, modos, valor o alias `→Colección:nombre` por modo vía
+    `figma.variables.getLocalVariableCollectionsAsync()` / `valuesByMode`), reemplazar el `.txt` y ejecutar
+    `powershell -ExecutionPolicy Bypass -File tools/generate-tokens.ps1`.
+  - Brand lleva prefijo `--brand-` (Theme reusa sus nombres). Tema y marca por atributo en `<html>`: `data-theme="dark"`, `data-brand="colombia"`.
+  - Typography y Layout por modo se aplican sobre `.r4-layout-modes` con container queries del contenedor `r4page` (Tablet ≤ 1023, Mobile ≤ 767).
+  Cuando llegue el repo de IT, se sustituyen por los suyos.
 - **Iconos y logotipo: siempre los de Figma, nunca dibujados ni inventados.** Los iconos son componentes de Primitivos 1.2 (página
   "↳ Icons"). Se obtienen con `use_figma` (solo lectura; cargar antes el skill `figma-use` con `get_figma_skill`,
   `uri: skill://figma/figma-use/SKILL.md`) exportando el nodo con `exportAsync({ format: 'SVG_STRING' })`, y se registran en

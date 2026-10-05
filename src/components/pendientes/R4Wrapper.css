@@ -11,8 +11,8 @@
   --r4-wrapper-pad: var(--r4-wrapper-gap);
 }
 
-.r4-wrapper--density-compact { --r4-wrapper-gap: var(--r4-density-compact); }
-.r4-wrapper--density-relaxed { --r4-wrapper-gap: var(--r4-density-relaxed); }
+.r4-wrapper--density-compact { --r4-wrapper-gap: var(--wrapper-paddingcompact); }
+.r4-wrapper--density-relaxed { --r4-wrapper-gap: var(--wrapper-paddingrelaxed); }
 
 /* padding-top del primer wrapper de la página (el gap sigue la density) */
 main > .r4-wrapper:first-child .r4-wrapper__container { padding-top: var(--wrapper-paddingtopfirstwrapper); }
