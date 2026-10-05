@@ -167,6 +167,11 @@ Lee **siempre** la página de Confluence del componente (API, accesibilidad: rol
 
 Antes de escribir markup, consulta el catálogo (importado aquí abajo) y sigue este orden:
 
+-1. **Lectura previa obligatoria de documentación (en TODA tarea, Flujo A o B).** Antes de escribir una línea: consulta
+   `docs/design-system/indice-confluence.md`, identifica **todas** las páginas de Confluence que afectan a la tarea (tokens, grid/espaciado,
+   anatomía de la página, interacción de formularios, accesibilidad, y la página de **cada componente** con su tabla "API componente")
+   y léelas **en vivo**, completas. Es independiente de lo que "ya sepas" o de que `CLAUDE.md`/`docs/` resuman algo. En el resumen final
+   incluye la lista **"Documentación leída"** (título + id) y las páginas que existen pero no has podido leer. Si no la has leído, no la cites.
 0. **Antes de usar cualquier componente, busca su nombre en el Changelog** (Confluence, enlazado en Recursos; léelo por MCP en vivo, no de memoria). Si hay cambios recientes (`EVOLUTIVO`, `NUEVO`), tenlos en cuenta y avisa a Jon de las diferencias con lo que ves en el código o en Figma. El Changelog dice qué se pidió cambiar, no si ya está implementado en Vue.
 1. **Existe en Vue (VUE / VUE+AEM):** impórtalo y úsalo. **Prohibido** reconstruirlo o imitarlo con HTML propio.
    Si sus props no coinciden con los ejes de Figma, usa el mapeo del catálogo; si no hay mapeo, lee el código del componente.
