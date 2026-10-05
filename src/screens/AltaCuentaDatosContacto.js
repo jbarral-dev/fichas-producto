@@ -39,7 +39,7 @@ const Content = defineComponent({
       // Prototipo: aquí iría la navegación al siguiente paso del alta.
       console.info('Datos de contacto válidos', { email: form.email, phone: form.phone })
     }
-    return { form, errors, validate, aceptado, continuar, legalOptions: [{ value: 'legal', text: 'Acepto el uso de datos personales por parte de Renta 4 Banco' }] }
+    return { form, errors, validate, aceptado, continuar, legalOptions: [{ value: 'legal', label: 'Acepto el uso de datos personales por parte de Renta 4 Banco' }] }
   },
   // Orden del DOM = orden de lectura = orden de foco: título → email → teléfono → check legal → Continuar.
   template: `

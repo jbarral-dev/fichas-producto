@@ -105,7 +105,7 @@ No todos los componentes diseñados en Figma están desarrollados en Vue: de ah�
 - **Componentes viejos en Figma:** `_Phone` (variante Phone de R4InputText) es antiguo: el campo ocupa el **100 % del padre** y usa los
   **tokens nuevos** (`component/input/*`, `feedback/*`), no los de la generación `Interaction/Input/*`. Si un componente de Figma mezcla
   generaciones de tokens o anchos fijos incoherentes, usa los nuevos, aplica la lógica del sistema y **lista la discrepancia** en el resumen.
-- **Checkbox:** no hay página de Confluence con tabla de API (Jon lo ha anotado como pendiente); mientras tanto, props de Figma adaptadas.
+- **Checkbox:** SÍ hay página de Confluence con tabla de API (R4InputCheckbox, 2810708014); una búsqueda por título parcial no la encontró. Para localizar docs usa el índice completo del espacio DIS (ver abajo), no solo búsquedas.
 - **Flujo B (lección de la 1.ª prueba):** antes de componer, contrasta Figma y Confluence en anchos de contenido y tokens (la doc antigua
   "Layouts de formularios" dice 4 columnas, la nueva "Páginas de Procesos" dice 6: manda la nueva) y deja las discrepancias en "Pendiente / dudas".
 - **Orden en el DOM:** manda el orden de lectura lógico (título → contenido → acción), no el orden de capas de Figma.
