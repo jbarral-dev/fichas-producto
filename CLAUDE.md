@@ -105,8 +105,8 @@ No todos los componentes diseñados en Figma están desarrollados en Vue: de ah�
 - **Componentes viejos en Figma:** `_Phone` (variante Phone de R4InputText) es antiguo: el campo ocupa el **100 % del padre** y usa los
   **tokens nuevos** (`component/input/*`, `feedback/*`), no los de la generación `Interaction/Input/*`. Si un componente de Figma mezcla
   generaciones de tokens o anchos fijos incoherentes, usa los nuevos, aplica la lógica del sistema y **lista la discrepancia** en el resumen.
-- **Checkbox:** SÍ hay página de Confluence con tabla de API (R4InputCheckbox, 2810708014); una búsqueda por título parcial no la encontró. Para localizar docs usa el índice `docs/design-system/indice-confluence.md` (páginas del espacio DIS, sin las de la carpeta "Borrar"), no solo búsquedas.
-- **Flujo B (lección de la 1.ª prueba):** antes de componer, contrasta Figma y Confluence (solo páginas vigentes, nunca las de "Borrar") en anchos de contenido y tokens: en la 1.ª prueba hubo que decidir entre dos anchos de columnas y se siguió "Páginas de Procesos" (la más reciente); deja las discrepancias en "Pendiente / dudas".
+- **Checkbox:** SÍ hay página de Confluence con tabla de API (R4InputCheckbox, 2810708014); una búsqueda por título parcial no la encontró. Para localizar docs usa `docs/design-system/fuentes-confluence.md` (solo páginas autorizadas), no búsquedas por título.
+- **Flujo B (lección de la 1.ª prueba):** antes de componer, contrasta Figma y Confluence (solo las páginas autorizadas de `fuentes-confluence.md`) en anchos de contenido y tokens: en la 1.ª prueba hubo que decidir entre dos anchos de columnas y se siguió "Páginas de Procesos" (la más reciente); deja las discrepancias en "Pendiente / dudas".
 - **Orden en el DOM:** manda el orden de lectura lógico (título → contenido → acción), no el orden de capas de Figma.
 - **Datos de prototipo** (QR, claves, textos que vendrían de backend): usa valores de ejemplo y señálalos.
 
@@ -166,14 +166,16 @@ Lee **siempre** la página de Confluence del componente (API, accesibilidad: rol
 
 Antes de escribir markup, consulta el catálogo (importado aquí abajo) y sigue este orden:
 
--2. **REGLA CRÍTICA: IGNORA todo lo que haya dentro de la carpeta "Borrar" del espacio de Diseño (DIS) de Confluence.** No lo leas, no lo
-   cites, no te bases en ello, aunque aparezca en búsquedas o en el índice. Si una página tiene esa carpeta como ancestro, es descartable.
-   (Orden expresa de Jon.) Si una decisión dependiera solo de contenido de esa carpeta, dilo y pregunta.
--1. **Lectura previa obligatoria de documentación (en TODA tarea, Flujo A o B).** Antes de escribir una línea: consulta
-   `docs/design-system/indice-confluence.md`, identifica **todas** las páginas de Confluence que afectan a la tarea (tokens, grid/espaciado,
-   anatomía de la página, interacción de formularios, accesibilidad, y la página de **cada componente** con su tabla "API componente")
-   y léelas **en vivo**, completas. Es independiente de lo que "ya sepas" o de que `CLAUDE.md`/`docs/` resuman algo. En el resumen final
-   incluye la lista **"Documentación leída"** (título + id) y las páginas que existen pero no has podido leer. Si no la has leído, no la cites.
+-2. **REGLA CRÍTICA — FUENTES DE CONFLUENCE AUTORIZADAS.** La documentación de Confluence no está 100 % actualizada: **solo son fuente válida las páginas
+   listadas en `docs/design-system/fuentes-confluence.md`** (decisión de Jon, 2026-10-05): Sistema de diseño, Componentes, el listado de componentes (database),
+   Changelog cambios, Arquitecturas de tokens, Grids, Nomenclatura, Storybook, Control de Versiones, **todo lo que cuelga de** Primitivos y de Específicos,
+   **todo lo de** la carpeta Anatomía de páginas y **todo lo de** Patrones. **Todo lo demás del espacio DIS se ignora** (no se lee, no se cita, no se usa de
+   base), aunque salga en una búsqueda: en especial la carpeta **"Borrar"**, las páginas "Revisión…", "Seguimiento…", "Archived…", "_OLD", etc.
+   Si algo que necesitas no está en la lista, **dilo y pregunta** a Jon; no lo rellenes con una página no autorizada. Si dos páginas autorizadas se contradicen, señálalo.
+-1. **Lectura previa obligatoria de documentación (en TODA tarea, Flujo A o B).** Antes de escribir una línea: abre `docs/design-system/fuentes-confluence.md`,
+   identifica **todas** las páginas autorizadas que afectan a la tarea (tokens, grid, anatomía de la página, patrones, nomenclatura, y la página de **cada
+   componente** con su tabla "API componente") y léelas **en vivo**, completas. Es independiente de lo que "ya sepas" o de que `CLAUDE.md`/`docs/` resuman algo.
+   En el resumen final incluye la lista **"Documentación leída"** (título + id) y las páginas autorizadas que no has podido leer. Si no la has leído, no la cites.
 0. **Antes de usar cualquier componente, busca su nombre en el Changelog** (Confluence, enlazado en Recursos; léelo por MCP en vivo, no de memoria). Si hay cambios recientes (`EVOLUTIVO`, `NUEVO`), tenlos en cuenta y avisa a Jon de las diferencias con lo que ves en el código o en Figma. El Changelog dice qué se pidió cambiar, no si ya está implementado en Vue.
 1. **Existe en Vue (VUE / VUE+AEM):** impórtalo y úsalo. **Prohibido** reconstruirlo o imitarlo con HTML propio.
    Si sus props no coinciden con los ejes de Figma, usa el mapeo del catálogo; si no hay mapeo, lee el código del componente.
