@@ -258,7 +258,10 @@ Aplícala por defecto y avisa si Figma muestra otra cosa.
 
 - Todo contenido vive dentro de un **Wrapper**. Nada suelto en `Main`. Un Wrapper = un bloque (salvo layouts de columnas explícitos).
 - El **primer Wrapper** abre con `spacing/page-start` (48/40/32), que ignora la `density`. En la API: `isFirst`. El último sigue la `density`.
-- Escala `density`: `none` 0 · `compact` 32/28/24 · `default` 48/40/32 · `relaxed` 64/56/48 (desktop/tablet/mobile). Una sola density por página (excluyendo el primero).
+- Escala `density` (tabla responsive de la página R4Wrapper, la fuente de los valores): `compact` 32/28/24 · `default` 48/40/32 · `relaxed` 64/56/48 (desktop/tablet/mobile). Una sola density por página (excluyendo el primero).
+  **Qué density usar** lo decide el contexto/Template (página "Templates" + R4Wrapper): **web pública → `relaxed`** (64 arriba y abajo en desktop) · **área de clientes → `compact`** (32) ·
+  procesos, fichas de producto y posts → `default` (48). No son valores en conflicto: "Templates" da el valor de dos contextos y R4Wrapper los nombra y escala por breakpoint.
+  El padding-top del **primer** Wrapper es siempre `paddingTopFirstWrapper` (48/40/32), con cualquier density.
 - La **banda de color la pone siempre el Wrapper**; los bloques (R4HighlightMedia…) van con `background=none`.
 - Ningún Wrapper con `backgroundColor` igual a la superficie de página. `app` = gris (`none`, `white`, `brandPrimary`, `brandSecondary`). `marketing` = blanco (`none`, `grey`, `brandPrimary`, `brandSecondary`).
 - Nunca dos Wrappers consecutivos con el mismo `backgroundColor` distinto de `none`.
