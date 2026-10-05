@@ -36,7 +36,7 @@ Si aparece una, **la implementación Vue puede no estar alineada** con Figma. Co
 | R4Accordion | VUE | — | ? | ? | |
 | R4Tag | VUE | desact. | ? | ? | |
 | R4Text | VUE | desact. | ? | ? | |
-| R4Title | VUE | ok | ? | ? | Confluence actualizado (Jon, 2026-10-05): la propiedad `type` (title, subtitle, pretitle) ya no aplica. **Subtitle y Pretitle son meros estilos tipográficos de Figma, no componentes.** Pendiente: leer la página de R4Title para ver la API vigente. |
+| R4Title | VUE | ok | ? | ? | Leído 2026-10-05 (id 2798944260). API: `text`, `level` (1-6, obligatorio; el nivel lo marca la jerarquía del documento, no el tamaño), `size` (extraLarge2|extraLarge|large|medium|small), `align` (left|center), `tag` (override: span/p si es decorativo). Sin `type`: Subtitle y Pretitle son estilos tipográficos de Figma. Tamaños = tokens Typography heading 2xl/xl/l/m/s (64/48/40/32/24 desktop). ⚠️ Quedan dos restos: la Descripción aún dice «tres tipos semánticos: title, subtitle y pretitle» y el default de `size` es extraLarge2 en Figma pero "medium" en la API. 
 
 | R4Avatar | VUE | — | ? | ? | |
 | R4Chip | VUE | — | ? | ? | |
