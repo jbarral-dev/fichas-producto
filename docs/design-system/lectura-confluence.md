@@ -21,7 +21,7 @@
 6. **Foco visible:** RESUELTO → doble anillo 6 + 4.
 7. **Áreas táctiles 44×44:** en suspenso por decisión de Jon.
 8. **R4Stats** (Confluence, 21 sept 2026): ya no hay `columns`; `orientation` + slot de 2–4 statItem y columnas por `minWidth`; statItem tiene `style` plain|boxed. **`docs/` y `CLAUDE.md` estaban obsoletos → actualizados.**
-9. **R4Title:** RESUELTO → Subtitle y Pretitle son estilos tipográficos de Figma; leída la página actualizada (ver catalogo.md). Quedan dos restos en la página: la Descripción aún menciona «title, subtitle y pretitle» y el default de `size` difiere entre Figma (extraLarge2) y API (medium).
+9. **R4Title:** RESUELTO → Subtitle y Pretitle son estilos tipográficos de Figma; la página se limpió el 2026-10-05 (sin menciones a subtitle/pretitle y `size` por defecto `extraLarge2` en Figma y API).
 10. **`density`** significa cosas distintas: Wrapper none/compact/default/relaxed (la doc de API solo lista relaxed/default/compact), R4NavigationItems default/narrow/relaxed, R4Popover default/none.
 11. **Defaults Figma ≠ API:** R4Title (`extraLarge2` vs `medium`), R4ListDetail (`large` vs `extraLarge`), R4ListIcon, R4NavigationItems (`hasCardContainer` yes vs false). Fijar el de la API.
 12. **Específicos (componentes viejos sin revisar; se dejan como están y se levanta la mano antes de implementar uno) con `mediaQuery`/`device` o padding/fondo propios** (doc): R4FAQ (padding vertical 64/48), Hero, HeroHome, HighlightMedia (`background`), RichText, PageTitle*, CardAdvisor, ChartLine, RiskBox, R4Jumbo (alto fijo y fondo propio), Notification, Modal, Title. Chocan con «el Wrapper pone la banda de color/padding» y con «sin mediaQuery».

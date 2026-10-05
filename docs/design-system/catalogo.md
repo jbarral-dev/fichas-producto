@@ -36,7 +36,7 @@ Si aparece una, **la implementación Vue puede no estar alineada** con Figma. Co
 | R4Accordion | VUE | — | ? | ? | |
 | R4Tag | VUE | desact. | ? | ? | |
 | R4Text | VUE | desact. | ? | ? | |
-| R4Title | VUE | ok | ? | ? | Leído 2026-10-05 (id 2798944260). API: `text`, `level` (1-6, obligatorio; el nivel lo marca la jerarquía del documento, no el tamaño), `size` (extraLarge2|extraLarge|large|medium|small), `align` (left|center), `tag` (override: span/p si es decorativo). Sin `type`: Subtitle y Pretitle son estilos tipográficos de Figma. Tamaños = tokens Typography heading 2xl/xl/l/m/s (64/48/40/32/24 desktop). ⚠️ Quedan dos restos: la Descripción aún dice «tres tipos semánticos: title, subtitle y pretitle» y el default de `size` es extraLarge2 en Figma pero "medium" en la API. 
+| R4Title | VUE | ok | ? | ? | Leído 2026-10-05 (id 2798944260). API: `text`, `level` (1-6, obligatorio; el nivel lo marca la jerarquía del documento, no el tamaño), `size` (extraLarge2|extraLarge|large|medium|small), `align` (left|center), `tag` (override: span/p si es decorativo). Sin `type`: Subtitle y Pretitle son estilos tipográficos de Figma. Tamaños = tokens Typography heading 2xl/xl/l/m/s (64/48/40/32/24 desktop). Limpiada por Jon/Claude el 2026-10-05: sin menciones a subtitle/pretitle y `size` por defecto = `extraLarge2` en Figma y en la API. |
 
 | R4Avatar | VUE | — | ? | ? | |
 | R4Chip | VUE | — | ? | ? | |
