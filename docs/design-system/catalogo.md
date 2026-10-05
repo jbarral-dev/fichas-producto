@@ -36,7 +36,8 @@ Si aparece una, **la implementación Vue puede no estar alineada** con Figma. Co
 | R4Accordion | VUE | — | ? | ? | |
 | R4Tag | VUE | desact. | ? | ? | |
 | R4Text | VUE | desact. | ? | ? | |
-| R4Title | VUE | desact. | ? | ? | ⚠️ Extracción de `subtitle`/`pretitle` a R4Subtitle / R4Pretitle en Figma. El Changelog (SM-23216) registra como **cancelada** la propuesta de añadir `type` a R4Title porque no se quería crear componentes: **estado sin aclarar, preguntar a Jon** |
+| R4Title | VUE | ok | ? | ? | Confluence actualizado (Jon, 2026-10-05): la propiedad `type` (title, subtitle, pretitle) ya no aplica. **Subtitle y Pretitle son meros estilos tipográficos de Figma, no componentes.** Pendiente: leer la página de R4Title para ver la API vigente. |
+
 | R4Avatar | VUE | — | ? | ? | |
 | R4Chip | VUE | — | ? | ? | |
 | R4Sheet | VUE | — | ? | ? | |
@@ -127,8 +128,8 @@ Aparecen en documentos posteriores. **Estado Vue desconocido: confirmar con IT /
 
 | Componente | Figma | Notas |
 |---|---|---|
-| R4Subtitle | ? | Extraído de R4Title. Eje `size` con valor `default` |
-| R4Pretitle | ? | Extraído de R4Title. Eje `size` con valor `default` |
+| R4Subtitle | — | **No es componente**: estilo tipográfico de Figma (Jon, 2026-10-05) |
+| R4Pretitle | — | **No es componente**: estilo tipográfico de Figma (Jon, 2026-10-05) |
 | R4Jumbo | ? | Changelog SM-24142: sustituye a BannerSimple de AEM; recoge la variante `backgroundImage` de R4HighlightMedia |
 | R4Shortcuts | ? | Aparece en el Changelog (SM-18982). No está en el dashboard |
 | R4CardIcon | ? | Aparece en el Changelog; R4Feature está previsto para sustituirlo |

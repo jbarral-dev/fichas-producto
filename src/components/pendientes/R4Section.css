@@ -63,7 +63,7 @@
 }
 
 /* mobile: la cabecera se "disuelve" para que el enlace baje debajo del slot (orden DOM: título → enlace → slot) */
-@container r4page (max-width: 767px) {
+@container r4page (max-width: 599px) {
   .r4-section { --r4-section-pad: var(--spacing-4); --r4-section-gap: var(--spacing-6); }
   .r4-section__header { display: contents; }
   .r4-section__title-wrapper { order: 1; width: 100%; flex: none; }

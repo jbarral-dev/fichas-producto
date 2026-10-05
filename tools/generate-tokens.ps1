@@ -66,7 +66,7 @@ foreach ($l in $lines) { $i = $l.IndexOf('='); $n = $l.Substring(0, $i); $v = $l
 [IO.File]::WriteAllText((Join-Path $out 'components.css'), $sb.ToString(), $utf8)
 
 # ---------- Typography y Layout (modos por breakpoint) ----------
-# Los modos se resuelven por el ancho del CONTENEDOR `r4page` (la Template): Desktop = por defecto; Tablet ≤ 1023 px; Mobile ≤ 767 px.
+# Los modos se resuelven por el ancho del CONTENEDOR `r4page` (la Template): Desktop = por defecto; Tablet ≤ 1023 px; Mobile ≤ 599 px (tablet empieza en 600; los 768 son solo el tamaño del frame de Figma que representa tablet).
 # Umbrales 1024/768: inferidos de la tabla responsive de "Páginas de Procesos" (Figma no define umbrales).
 function Modes([string]$file, [string[]]$modeNames, [string[]]$skipOverride, [string]$title, [string]$desc, [string]$outFile, [string[]]$bpModes, [string[]]$bpQueries) {
   $lines = Get-Content (Join-Path $src $file) -Encoding UTF8 | Where-Object { $_.Trim() } | Select-Object -Skip 1
@@ -90,6 +90,6 @@ function Modes([string]$file, [string[]]$modeNames, [string[]]$skipOverride, [st
   }
   [IO.File]::WriteAllText((Join-Path $out $outFile), $sb.ToString(), $utf8)
 }
-Modes 'typography.txt' @('Desktop', 'Tablet', 'Mobile') @() 'Typography · tamaños y alturas de línea por breakpoint (Desktop · Tablet · Mobile)' " * Capa 5 de 6. Desktop por defecto; Tablet y Mobile se aplican sobre .r4-layout-modes (la Template) según el ancho del contenedor r4page.`n" 'typography.css' @('Tablet', 'Mobile') @('max-width: 1023px', 'max-width: 767px')
-Modes 'layout.txt' @('Desktop XL', 'Desktop', 'Tablet', 'Mobile') @('screenWidth', 'grid/containerMaxWidth') 'Layout · rejilla y paddings por breakpoint (Desktop XL · Desktop · Tablet · Mobile)' " * Capa 6 de 6. Desktop XL por defecto; el modo Desktop solo se distingue en screenWidth y grid/containerMaxWidth, que NO se sobrescriben por modo:`n * son anchos del marco de diseño (1024/768/390), no topes; el tope real es 1368 (tabla de R4Wrapper en Confluence: sin ancho máx. por debajo de 1368).`n" 'layout.css' @('Tablet', 'Mobile') @('max-width: 1023px', 'max-width: 767px')
+Modes 'typography.txt' @('Desktop', 'Tablet', 'Mobile') @() 'Typography · tamaños y alturas de línea por breakpoint (Desktop · Tablet · Mobile)' " * Capa 5 de 6. Desktop por defecto; Tablet y Mobile se aplican sobre .r4-layout-modes (la Template) según el ancho del contenedor r4page.`n" 'typography.css' @('Tablet', 'Mobile') @('max-width: 1023px', 'max-width: 599px')
+Modes 'layout.txt' @('Desktop XL', 'Desktop', 'Tablet', 'Mobile') @('screenWidth', 'grid/containerMaxWidth') 'Layout · rejilla y paddings por breakpoint (Desktop XL · Desktop · Tablet · Mobile)' " * Capa 6 de 6. Desktop XL por defecto; el modo Desktop solo se distingue en screenWidth y grid/containerMaxWidth, que NO se sobrescriben por modo:`n * son anchos del marco de diseño (1024/768/390), no topes; el tope real es 1368 (tabla de R4Wrapper en Confluence: sin ancho máx. por debajo de 1368).`n" 'layout.css' @('Tablet', 'Mobile') @('max-width: 1023px', 'max-width: 599px')
 Write-Host 'Tokens generados en src/tokens/'

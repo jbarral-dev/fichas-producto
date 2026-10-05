@@ -45,7 +45,7 @@
   }
 }
 
-@container r4page (max-width: 767px) {
+@container r4page (max-width: 599px) {
   .r4-layout-modes {
     --size-heading-2xl: 48px;
     --size-heading-xl: 40px;

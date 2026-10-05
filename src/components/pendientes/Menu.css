@@ -48,7 +48,7 @@
 }
 
 /* Device=Mobile (Figma): isotipo en lugar del logotipo; "Ayuda" body/m con icono de 20 px */
-@container r4page (max-width: 767px) {
+@container r4page (max-width: 599px) {
   .menu__branding-logotype { display: none; }
   .menu__branding-isotype { display: block; }
   .menu__help { font-size: var(--size-body-m); line-height: var(--line-height-body-m); }

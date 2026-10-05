@@ -12,7 +12,7 @@
 @container r4page (max-width: 1023px) {
   .screen-2fa__col { grid-column: 2 / span 6; }
 }
-@container r4page (max-width: 767px) {
+@container r4page (max-width: 599px) {
   .screen-2fa__col { grid-column: 1 / span 4; }
   .screen-2fa__only-wide,
   .screen-2fa__col.screen-2fa__only-wide { display: none; }

@@ -21,7 +21,7 @@
   color: var(--text-subdued);
 }
 
-@container r4page (max-width: 767px) {
+@container r4page (max-width: 599px) {
   .r4-page-title-process { gap: var(--spacing-2); }
   .r4-page-title-process__description { font-size: var(--size-body-m); line-height: var(--line-height-body-m); }
 }

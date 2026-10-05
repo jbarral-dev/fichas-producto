@@ -5,7 +5,7 @@
  */
 .alta__col { grid-column: 4 / span 6; }
 @container r4page (max-width: 1023px) { .alta__col { grid-column: 2 / span 6; } }
-@container r4page (max-width: 767px) { .alta__col { grid-column: 1 / span 4; } }
+@container r4page (max-width: 599px) { .alta__col { grid-column: 1 / span 4; } }
 
 .alta__form {
   display: flex;

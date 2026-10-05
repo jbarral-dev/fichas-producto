@@ -13,6 +13,6 @@
 @container r4page (max-width: 1023px) {
   .r4-layout-modes { --r4-menu-height: 56px; --grid-columns: 8; }
 }
-@container r4page (max-width: 767px) {
+@container r4page (max-width: 599px) {
   .r4-layout-modes { --grid-columns: 4; }
 }

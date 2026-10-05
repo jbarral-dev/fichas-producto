@@ -23,7 +23,7 @@
   }
 }
 
-@container r4page (max-width: 767px) {
+@container r4page (max-width: 599px) {
   .r4-layout-modes {
     --grid-containerpadding: var(--spacing-3);
     --wrapper-paddingrelaxed: var(--spacing-12);

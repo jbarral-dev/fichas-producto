@@ -82,7 +82,7 @@ No todos los componentes diseñados en Figma están desarrollados en Vue: de ah�
     (`--component-button-size-large`, `--component-checkbox-size`…); medidas sin token se derivan (`calc(var(--spacing-2) + var(--spacing-05))`)
     o van a `pending.css`. Únicas excepciones: el tamaño intrínseco de un asset (svg del check, QR de ejemplo) y utilidades técnicas (`sr-only`).
   - Brand lleva prefijo `--brand-` (Theme reusa sus nombres). Tema y marca por atributo en `<html>`: `data-theme="dark"`, `data-brand="colombia"`.
-  - Typography y Layout por modo se aplican sobre `.r4-layout-modes` con container queries del contenedor `r4page` (Tablet ≤ 1023, Mobile ≤ 767).
+  - Typography y Layout por modo se aplican sobre `.r4-layout-modes` con container queries del contenedor `r4page` (Tablet ≤ 1023, Mobile ≤ 599: el cambio a tablet es a partir de 600 px; 768 solo es el tamaño del frame de Figma que representa tablet).
   Cuando llegue el repo de IT, se sustituyen por los suyos.
 - **Iconos y logotipo: siempre los de Figma, nunca dibujados ni inventados.** Los iconos son componentes de Primitivos 1.2 (página
   "↳ Icons"). Se obtienen con `use_figma` (solo lectura; cargar antes el skill `figma-use` con `get_figma_skill`,
@@ -107,6 +107,18 @@ No todos los componentes diseñados en Figma están desarrollados en Vue: de ah�
   generaciones de tokens o anchos fijos incoherentes, usa los nuevos, aplica la lógica del sistema y **lista la discrepancia** en el resumen.
 - **Checkbox:** SÍ hay página de Confluence con tabla de API (R4InputCheckbox, 2810708014); una búsqueda por título parcial no la encontró. Para localizar docs usa `docs/design-system/fuentes-confluence.md` (solo páginas autorizadas), no búsquedas por título.
 - **Flujo B (lección de la 1.ª prueba):** antes de componer, contrasta Figma y Confluence (solo las páginas autorizadas de `fuentes-confluence.md`) en anchos de contenido y tokens: en la 1.ª prueba hubo que decidir entre dos anchos de columnas y se siguió "Páginas de Procesos" (la más reciente); deja las discrepancias en "Pendiente / dudas".
+- **Decisiones de Jon sobre contradicciones de la documentación (2026-10-05) — ya NO son dudas:**
+  - Ancho máximo del contenedor: **1368 px**. Padding horizontal: **24 (desktop/tablet) / 12 (mobile)**.
+  - Breakpoints: **tablet empieza en 600 px** (mobile < 600); los 768 px son solo el tamaño del *frame* de Figma que representa tablet. Desktop desde 1024.
+  - Fondo de página `surface/page` Light = **#F7F7F7** (la variable de Figma manda; la página de tokens se corrige).
+  - Se mantiene la propiedad `type` en las APIs aunque la regla de Nomenclatura (antigua) la desaconseje; puede revisarse.
+  - Foco visible: **doble anillo 6 px negro + 4 px blanco** (`--effect-card-focus-outline`).
+  - Regla de áreas táctiles 44×44: **obviarla de momento**.
+  - R4Subtitle y R4Pretitle **no son componentes**: son estilos tipográficos de Figma. `R4Title` ya no lleva `type` (Confluence actualizado).
+  - TemplateProcess y los modelos de Template del repo están **en WIP**: se dejan como están (Confluence usa Template 1/2/3).
+  - **Específicos** son componentes en general viejos y sin revisar: de momento se dejan como están. Al implementar uno, si ves contradicciones con las reglas
+    del sistema (`mediaQuery`, fondo/padding propio, varios elementos interactivos…), **levanta la mano ANTES de hacer nada**.
+  - Qué página está "completa" lo decide Jon, no la ausencia de una sección: no declares "incompletas" páginas por no tener tabla "API componente". R4Divider no existe como componente.
 - **Orden en el DOM:** manda el orden de lectura lógico (título → contenido → acción), no el orden de capas de Figma.
 - **Datos de prototipo** (QR, claves, textos que vendrían de backend): usa valores de ejemplo y señálalos.
 
@@ -226,7 +238,7 @@ estilos ni componentes. Sin diseño no hay "interpretación visual libre": lo qu
 6. **Contenido.** Usa los textos del prompt tal cual. Lo que falte: texto de ejemplo claramente marcado (datos de prototipo) y respetando
    la guía de contenido de cada componente (p. ej. botones en infinitivo, títulos orientados a la acción).
 7. **Accesibilidad.** Aplica la de cada componente (roles, orden de foco y de lectura, `aria-*`) y la de página (landmarks, un `<h1>`,
-   foco visible, áreas táctiles de 44 px, `aria-live` en estados dinámicos).
+   foco visible, `aria-live` en estados dinámicos).
 8. **Verificar.** Arranca `serve.ps1` (preview), comprueba sin errores de consola y revisa a **1512, 800 y 390 px**: sin scroll horizontal,
    cabecera fija si es de proceso, contenido correcto por breakpoint. Mide con el DOM lo que se pueda contrastar con las guías de
    Confluence (columnas, paddings, tamaños). Hazlo antes de dar nada por bueno.
@@ -291,7 +303,7 @@ Detalle en el documento de interactividad importado al final.
 - Cinco combinaciones válidas (`interactivity`): `cardStatic`, `plainStatic`, `cardClickable`, `cardLink`, `plainLink`. `plainClickable` no existe.
 - `cardClickable`: el `<a>` envuelve el **título** y se estira con `::after`; la card es un `<div>`. Nunca envuelvas la card entera en un `<a>`.
 - CTA visible + card clicable: `cardClickable` + chevron decorativo `aria-hidden="true"`.
-- Áreas táctiles de 44 px en código aunque el visual sea menor (p. ej. botón de ayuda de R4StatItem: 24 px visual → 44 px).
+- ~~Áreas táctiles de 44 px~~ — **regla en suspenso por decisión de Jon (2026-10-05): obviarla de momento.** Usa los tamaños de Figma/Confluence de cada componente.
 - Respeta roles, orden de lectura y orden de foco definidos en los frames de accesibilidad de Figma de cada componente.
 
 ## Comandos
