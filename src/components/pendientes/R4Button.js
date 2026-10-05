@@ -28,7 +28,7 @@ export default defineComponent({
   template: `
     <button :class="classes" type="button" :disabled="disabled" @click="$emit('click', $event)">
       <span class="r4-button__content">
-        <Icon v-if="icon" :name="icon" :size="16" />
+        <Icon v-if="icon" :name="icon" />
         <span v-if="text" class="r4-button__text">{{ text }}</span>
       </span>
     </button>

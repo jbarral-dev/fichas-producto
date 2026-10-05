@@ -4,7 +4,7 @@
   gap: var(--spacing-2);
   width: 100%;
   padding: var(--spacing-4);
-  box-shadow: inset 0 0 0 0.5px var(--feedback-info-border); /* borde interior: Figma incluye el trazo en el tamaño */
+  box-shadow: inset 0 0 0 calc(var(--r4-line-width) / 2) var(--feedback-info-border); /* borde interior: Figma incluye el trazo en el tamaño */
   border-radius: var(--component-notification-radius);
   background: var(--feedback-info-bg);
   color: var(--text-default);

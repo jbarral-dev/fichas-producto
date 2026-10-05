@@ -12,7 +12,7 @@
   justify-content: space-between;
   width: 100%;
   max-width: var(--grid-containermaxwidth);
-  height: 56px;
+  height: var(--spacing-14);
   padding-inline: var(--grid-containerpadding);
   background: var(--surface-default);
 }
@@ -22,8 +22,8 @@
   align-items: center;
   justify-content: center;
   flex: none;
-  width: 20px;
-  height: 20px;
+  width: var(--spacing-5);
+  height: var(--spacing-5);
   padding: 0;
   border: 0;
   background: none;
@@ -33,7 +33,7 @@
 
 /* Área táctil de 44 px (CLAUDE.md) aunque el visual sea 20 px. */
 .r4-progress-bar__action { position: relative; }
-.r4-progress-bar__action::after { content: ''; position: absolute; inset: -12px; }
+.r4-progress-bar__action::after { content: ''; position: absolute; inset: calc(var(--spacing-3) * -1); }
 
 .r4-progress-bar__title {
   flex: 1 1 0;
@@ -46,11 +46,11 @@
 .r4-progress-bar__track {
   display: flex;
   width: 100%;
-  height: 4px;
+  height: var(--spacing-1);
   background: var(--surface-muted);
 }
 
-.r4-progress-bar__segment { flex: 1 1 0; height: 4px; }
+.r4-progress-bar__segment { flex: 1 1 0; height: var(--spacing-1); }
 .r4-progress-bar__segment--done { background: var(--accent-border); }
 
 /* Sin botón de cierre se mantiene su hueco para que el título siga centrado */

@@ -22,7 +22,7 @@
 /* Foco: trazo interior de 1 px (accent/border) + efecto CardFocusOutline */
 .r4-link:focus-visible {
   outline: 0;
-  box-shadow: inset 0 0 0 1px var(--accent-border), var(--effect-card-focus-outline);
+  box-shadow: inset 0 0 0 var(--r4-line-width) var(--accent-border), var(--effect-card-focus-outline);
 }
 
 .r4-link--disabled,
@@ -34,5 +34,5 @@
 
 /* Iconos de 16 px (small/medium) o 18 px (large) */
 .r4-link--small .r4-icon,
-.r4-link--medium .r4-icon { width: 16px; height: 16px; }
-.r4-link--large .r4-icon { width: 18px; height: 18px; }
+.r4-link--medium .r4-icon { width: var(--spacing-4); height: var(--spacing-4); }
+.r4-link--large .r4-icon { width: calc(var(--spacing-4) + var(--spacing-05)); height: calc(var(--spacing-4) + var(--spacing-05)); }

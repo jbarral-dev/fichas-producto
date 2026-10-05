@@ -78,6 +78,9 @@ No todos los componentes diseñados en Figma están desarrollados en Vue: de ah�
     Para actualizar desde Figma: volcar la colección con `use_figma` (nombre, modos, valor o alias `→Colección:nombre` por modo vía
     `figma.variables.getLocalVariableCollectionsAsync()` / `valuesByMode`), reemplazar el `.txt` y ejecutar
     `powershell -ExecutionPolicy Bypass -File tools/generate-tokens.ps1`.
+  - **Tampoco literales de tamaño** (`40px`, `16px`, `1px`…): usa la escala de Foundations (`--spacing-*`, `--radius-*`) o el token de componente
+    (`--component-button-size-large`, `--component-checkbox-size`…); medidas sin token se derivan (`calc(var(--spacing-2) + var(--spacing-05))`)
+    o van a `pending.css`. Únicas excepciones: el tamaño intrínseco de un asset (svg del check, QR de ejemplo) y utilidades técnicas (`sr-only`).
   - Brand lleva prefijo `--brand-` (Theme reusa sus nombres). Tema y marca por atributo en `<html>`: `data-theme="dark"`, `data-brand="colombia"`.
   - Typography y Layout por modo se aplican sobre `.r4-layout-modes` con container queries del contenedor `r4page` (Tablet ≤ 1023, Mobile ≤ 767).
   Cuando llegue el repo de IT, se sustituyen por los suyos.

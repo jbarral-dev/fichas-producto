@@ -64,7 +64,7 @@
 
 /* Área táctil de 44 px (CLAUDE.md): el botón de icono mide 40 px */
 .r4-button--content-icon { position: relative; }
-.r4-button--content-icon::after { content: ''; position: absolute; inset: -2px; }
+.r4-button--content-icon::after { content: ''; position: absolute; inset: calc(var(--spacing-05) * -1); }
 
 /* ── variant=secondary (fondo blanco, trazo accent/border 1 px interior) ── */
 .r4-button--secondary {
@@ -100,3 +100,6 @@
 /* width=full-width (API): 100 % del contenedor; auto (por defecto): ajustado al contenido */
 .r4-button--full-width { display: flex; width: 100%; }
 .r4-button:not(.r4-button--full-width) { display: inline-flex; }
+
+/* Iconos del botón: 16 px (spacing/4) en Figma */
+.r4-button .r4-icon { width: var(--spacing-4); height: var(--spacing-4); }

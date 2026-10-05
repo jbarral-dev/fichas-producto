@@ -46,8 +46,8 @@
 }
 
 .r4-step-item--last {
-  --r4-step-pad-bottom: 0px;
-  --r4-step-content-pad-bottom: 0px;
+  --r4-step-pad-bottom: var(--spacing-0);
+  --r4-step-content-pad-bottom: var(--spacing-0);
 }
 
 .r4-step-item__indicator-and-line {
@@ -68,7 +68,7 @@
   flex: none;
   width: var(--r4-step-indicator);
   height: var(--r4-step-indicator);
-  border-radius: 100px;
+  border-radius: var(--radius-full);
   background: var(--surface-muted);
   color: var(--text-default);
 }
@@ -83,9 +83,9 @@
 /* Línea vertical de 1 px, discontinua 2 px / 2 px, color border/default (trazo del nodo Line del stepItem) */
 .r4-step-item__line {
   flex: 1 1 0;
-  min-height: 1px;
-  width: 1px;
-  background: repeating-linear-gradient(to bottom, var(--border-default) 0 2px, transparent 2px 4px);
+  min-height: var(--r4-line-width);
+  width: var(--r4-line-width);
+  background: repeating-linear-gradient(to bottom, var(--border-default) 0 var(--spacing-05), transparent var(--spacing-05) var(--spacing-1));
 }
 
 .r4-step-item__content {
@@ -125,5 +125,5 @@
 }
 
 /* indicator=icon: R4Icon plain neutralDark de 16 px (medium) o 20 px (large) */
-.r4-step-item__icon { width: 16px; height: 16px; color: var(--text-default); }
-.r4-step-item--large .r4-step-item__icon { width: 20px; height: 20px; }
+.r4-step-item__icon { width: var(--spacing-4); height: var(--spacing-4); color: var(--text-default); }
+.r4-step-item--large .r4-step-item__icon { width: var(--spacing-5); height: var(--spacing-5); }

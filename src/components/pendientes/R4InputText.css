@@ -55,8 +55,8 @@
 .r4-input-text__input {
   flex: 1 1 0;
   min-width: 0;
-  height: 40px;
-  padding: 7px 0;
+  height: var(--spacing-10);
+  padding-block: calc((var(--spacing-10) - var(--line-height-body-l)) / 2);
   border: 0;
   background: transparent;
   outline: 0;

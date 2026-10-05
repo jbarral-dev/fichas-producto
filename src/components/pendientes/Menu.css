@@ -29,7 +29,6 @@
 .menu__branding {
   display: flex;
   align-items: center;
-  gap: 9px;
 }
 .menu__branding-isotype { display: none; }
 
@@ -41,7 +40,7 @@
   font: var(--font-weight-semibold) var(--size-body-l) / var(--line-height-body-l) var(--font-family-body);
   text-decoration: none;
 }
-.menu__help .r4-icon { width: 24px; height: 24px; }
+.menu__help .r4-icon { width: var(--spacing-6); height: var(--spacing-6); }
 
 .menu__help:focus-visible {
   outline: 0;
@@ -53,5 +52,5 @@
   .menu__branding-logotype { display: none; }
   .menu__branding-isotype { display: block; }
   .menu__help { font-size: var(--size-body-m); line-height: var(--line-height-body-m); }
-  .menu__help .r4-icon { width: 20px; height: 20px; }
+  .menu__help .r4-icon { width: var(--spacing-5); height: var(--spacing-5); }
 }

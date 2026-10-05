@@ -38,7 +38,7 @@ export default defineComponent({
         <span v-if="!required" class="r4-input-text__optional">(opcional)</span>
       </label>
       <div class="r4-input-phone__field">
-        <span class="r4-input-phone__tab"><span class="r4-input-phone__prefix"><span class="r4-input-phone__sr">Prefijo </span>+34</span><Icon name="chevron-down" :size="16" /></span>
+        <span class="r4-input-phone__tab"><span class="r4-input-phone__prefix"><span class="r4-input-phone__sr">Prefijo </span>+34</span><Icon name="chevron-down" /></span>
         <input class="r4-input-phone__input" :id="id" type="tel" inputmode="tel" autocomplete="tel-national" :value="modelValue" :placeholder="placeholder"
                :disabled="disabled" :aria-required="required ? 'true' : undefined" :aria-invalid="status === 'Error' ? 'true' : undefined"
                :aria-describedby="caption ? id + '-caption' : undefined" v-bind="inputAttrs" @input="onInput" />
