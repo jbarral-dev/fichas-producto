@@ -280,7 +280,7 @@ Detalle en el documento de ejes agnósticos importado al final.
 - **`mediaQuery` no existe en desarrollo** (es una limitación de Figma): **el CSS controla los media/container queries**. Ningún componente tiene prop `mediaQuery` (ni Template, Wrapper, Menu o Footer); los ejes de dispositivo de Figma se resuelven con el ancho del contenedor `r4page` y las variables por modo (Layout, Typography, 1. Grid). Dentro se usan ejes semánticos (`size`, `columns`, `density`).
 - **Tablet: nunca se diseña.** Solo hay las guidelines responsive (breakpoints, paddings; Confluence "Páginas de Procesos" y R4Wrapper) y las variables de Typography por modo. Adapta tablet tú, **de forma consistente** con desktop y mobile (mismo contenido que desktop salvo que la doc diga otra cosa, tokens de modo Tablet, rejilla de 8 columnas) y no vuelvas a preguntar por ello.
 - El comportamiento responsive se resuelve con **container queries** (ancho del contenedor, no del viewport).
-- R4Stats: desktop ancho completo `columns` 3–4 + `size=large` · media caja o modal `columns=2` + `small` · tablet `2` + `large` · mobile `1` + `small`.
+- R4Stats (según Confluence, 21 sept 2026; sustituye a la receta anterior con `columns`, que se descartó): R4Stats lleva `orientation` horizontal|vertical y un slot de 2 a 4 `statItem`; las columnas emergen del ancho y del `minWidth` del item (large 280 · small 240): 1320 px → 4 por fila · 1024 → 3 · 768 → 2 · 390 → 1. El statItem tiene `style` plain|boxed (`hasCard` en código). Sin `mediaQuery`.
 - R4Tabs (detalle en el documento importado al final): `fixed` mientras ninguna etiqueta necesite truncarse; si no, `scrollable`. Mobile con 2–3 tabs → `fixed`.
 
 ## Interactividad y accesibilidad

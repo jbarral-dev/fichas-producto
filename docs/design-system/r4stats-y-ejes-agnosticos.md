@@ -1,3 +1,5 @@
+> **⚠️ PARCIALMENTE OBSOLETO (2026-10-05):** Confluence (R4Stats, 21 sept 2026) descartó `columns`: R4Stats usa `orientation` horizontal|vertical, el slot admite 2–4 statItem y las columnas salen del `minWidth` del item (large 280, small 240); statItem SÍ tiene `style` plain|boxed (`hasCard`). La receta responsive de la sección 4 ya no vale. Ver `CLAUDE.md`.
+
 # R4StatItem / R4Stats · y la regla de ejes agnósticos al dispositivo
 
 Reestructura de septiembre de 2026. Archivo: `R4 Design System | Primitivos | 1.2`.
