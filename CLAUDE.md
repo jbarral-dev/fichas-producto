@@ -335,3 +335,11 @@ R4Tabs (eje `layout` y slot):
 R4Feature (modelo de interactividad):
 
 @docs/design-system/r4feature-interactividad.md
+
+Fuentes de Confluence autorizadas (mapa de qué leer):
+
+@docs/design-system/fuentes-confluence.md
+
+Hallazgos de la lectura completa y contradicciones resueltas/pendientes:
+
+@docs/design-system/lectura-confluence.md
