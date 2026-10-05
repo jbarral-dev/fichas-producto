@@ -105,9 +105,8 @@ No todos los componentes diseñados en Figma están desarrollados en Vue: de ah�
 - **Componentes viejos en Figma:** `_Phone` (variante Phone de R4InputText) es antiguo: el campo ocupa el **100 % del padre** y usa los
   **tokens nuevos** (`component/input/*`, `feedback/*`), no los de la generación `Interaction/Input/*`. Si un componente de Figma mezcla
   generaciones de tokens o anchos fijos incoherentes, usa los nuevos, aplica la lógica del sistema y **lista la discrepancia** en el resumen.
-- **Checkbox:** SÍ hay página de Confluence con tabla de API (R4InputCheckbox, 2810708014); una búsqueda por título parcial no la encontró. Para localizar docs usa el índice `docs/design-system/indice-confluence.md` (284 páginas del espacio DIS), no solo búsquedas.
-- **Flujo B (lección de la 1.ª prueba):** antes de componer, contrasta Figma y Confluence en anchos de contenido y tokens (la doc antigua
-  "Layouts de formularios" dice 4 columnas, la nueva "Páginas de Procesos" dice 6: manda la nueva) y deja las discrepancias en "Pendiente / dudas".
+- **Checkbox:** SÍ hay página de Confluence con tabla de API (R4InputCheckbox, 2810708014); una búsqueda por título parcial no la encontró. Para localizar docs usa el índice `docs/design-system/indice-confluence.md` (páginas del espacio DIS, sin las de la carpeta "Borrar"), no solo búsquedas.
+- **Flujo B (lección de la 1.ª prueba):** antes de componer, contrasta Figma y Confluence (solo páginas vigentes, nunca las de "Borrar") en anchos de contenido y tokens: en la 1.ª prueba hubo que decidir entre dos anchos de columnas y se siguió "Páginas de Procesos" (la más reciente); deja las discrepancias en "Pendiente / dudas".
 - **Orden en el DOM:** manda el orden de lectura lógico (título → contenido → acción), no el orden de capas de Figma.
 - **Datos de prototipo** (QR, claves, textos que vendrían de backend): usa valores de ejemplo y señálalos.
 
@@ -167,6 +166,9 @@ Lee **siempre** la página de Confluence del componente (API, accesibilidad: rol
 
 Antes de escribir markup, consulta el catálogo (importado aquí abajo) y sigue este orden:
 
+-2. **REGLA CRÍTICA: IGNORA todo lo que haya dentro de la carpeta "Borrar" del espacio de Diseño (DIS) de Confluence.** No lo leas, no lo
+   cites, no te bases en ello, aunque aparezca en búsquedas o en el índice. Si una página tiene esa carpeta como ancestro, es descartable.
+   (Orden expresa de Jon.) Si una decisión dependiera solo de contenido de esa carpeta, dilo y pregunta.
 -1. **Lectura previa obligatoria de documentación (en TODA tarea, Flujo A o B).** Antes de escribir una línea: consulta
    `docs/design-system/indice-confluence.md`, identifica **todas** las páginas de Confluence que afectan a la tarea (tokens, grid/espaciado,
    anatomía de la página, interacción de formularios, accesibilidad, y la página de **cada componente** con su tabla "API componente")

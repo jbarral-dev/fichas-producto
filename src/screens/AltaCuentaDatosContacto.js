@@ -2,7 +2,7 @@
 // Composición: TemplateProcess (gris, Menu Process con R4ProgressBar fijo, sin Footer) → R4Wrapper (primero) → Grid →
 //   R4PageTitleProcess (sin descripción) · formulario (R4InputEmail, R4InputPhone, R4InputCheckbox legal) · R4Button "Continuar".
 // Contenido de las columnas según "Páginas de Procesos": 6 de 12 · 6 de 8 · 4 de 4 (todo por CSS, container query `r4page`).
-// Comportamiento: "Continuar" desactivado hasta aceptar el check legal. Los campos se validan al perder el foco (doc "Interacción: Formularios").
+// Comportamiento: "Continuar" desactivado hasta aceptar el check legal. Los campos se validan al perder el foco (decisión INFERIDA: la única doc que lo decía estaba en la carpeta "Borrar", que se ignora; sin fuente vigente).
 // Decisiones inferidas: ver el resumen de la tarea (paso del proceso, textos de error, separación entre campos).
 import { defineComponent, reactive, ref, computed } from '../../vendor/vue.esm-browser.prod.js'
 import TemplateProcess from '../templates/TemplateProcess.js'
