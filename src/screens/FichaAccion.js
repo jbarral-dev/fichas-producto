@@ -1,0 +1,130 @@
+// Pantalla: ficha de producto · Acción (IBERDROLA). Figma "Proyectos - Fichas de Productos" (anbsZ1mpaxogwUM7dzbcPn):
+//   desktop cl-ficha-accion--dk (2463:42378; variantes con Derivados = Opciones: 2478:41029 y 2481:36427) · mobile ficha-accion--mb (2448:15016; con Opciones: 2454:15572;
+//   con el sheet «En otros mercados» sheetOtherMarkets 2454:15486 y la caja fija FixedProductTitle del frame «Efecto Scroll» 2612:141963).
+//   Tablet: no hay diseño (nunca se diseña tablet): se apila como mobile con los tokens de modo Tablet y la rejilla de 8 columnas.
+// Composición (TemplateDetail, superficie gris, sin Footer): R4Wrapper density=compact × 3. Desktop: [R4PageTitleProduct] · [R4Tabs + (R4ChartLine | Resumen)] · [Derivados | Recomendación].
+//   Mobile: el Figma parte los wrappers de otra manera ([título + tabs + gráfico] · [resumen + derivados + recomendación]); como el DOM es único se mantiene el reparto de desktop y se
+//   corrigen en mobile/tablet los espacios entre wrappers con márgenes derivados de la density (ver ficha-accion.css).
+// Interacciones: tabs (solo «Detalle» tiene contenido diseñado) · periodos del gráfico (la serie no cambia: datos de ejemplo) · chips de Derivados (muestran los derivados de esa categoría,
+//   como en la variante con Opciones del Figma) · «Mercado» del Resumen abre el sheet «En otros mercados» (bottom en <1024, side en ≥1024) · en mobile el título del producto, al salir del
+//   viewport, deja fija bajo la cabecera la caja FixedProductTitle y las acciones van en el R4ButtonDock.
+// Datos de ejemplo: src/data/ficha-accion.js.
+import { defineComponent, ref, computed } from '../../vendor/vue.esm-browser.prod.js'
+import TemplateDetail from '../templates/TemplateDetail.js'
+import Menu from '../components/pendientes/Menu.js'
+import FixedProductTitle from '../components/pendientes/FixedProductTitle.js'
+import R4Wrapper from '../components/pendientes/R4Wrapper.js'
+import R4Section from '../components/pendientes/R4Section.js'
+import R4PageTitleProduct from '../components/pendientes/R4PageTitleProduct.js'
+import R4Tabs from '../components/pendientes/R4Tabs.js'
+import R4ChartLine from '../components/pendientes/R4ChartLine.js'
+import R4ListDetail from '../components/pendientes/R4ListDetail.js'
+import R4Chip from '../components/pendientes/R4Chip.js'
+import R4Tag from '../components/pendientes/R4Tag.js'
+import R4Button from '../components/pendientes/R4Button.js'
+import R4Link from '../components/pendientes/R4Link.js'
+import R4Sheet from '../components/pendientes/R4Sheet.js'
+import R4ButtonDock from '../components/pendientes/R4ButtonDock.js'
+import _ProductActionsMenu from '../components/pendientes/_ProductActionsMenu.js'
+import _SearchResultItem from '../components/pendientes/_SearchResultItem.js'
+import _ChartGauge from '../components/pendientes/_ChartGauge.js'
+import { iconComponent } from '../icons/_Icon.js'
+import { accion } from '../data/ficha-accion.js'
+
+const IcArrowRight = iconComponent('ic-arrow-right')
+
+export default defineComponent({
+  name: 'FichaAccion',
+  components: {
+    TemplateDetail, Menu, FixedProductTitle, R4Wrapper, R4Section, R4PageTitleProduct, R4Tabs, R4ChartLine, R4ListDetail, R4Chip, R4Tag, R4Button, R4Link,
+    R4Sheet, R4ButtonDock, ProductActionsMenu: _ProductActionsMenu, SearchResultItem: _SearchResultItem, ChartGauge: _ChartGauge,
+  },
+  setup() {
+    document.title = `${accion.producto.productName} · Acciones · Renta 4`
+    const d = accion
+    const tab = ref(0)
+    const period = ref('1d')
+    const categoria = ref('cfds')
+    const sheetOpen = ref(false)
+    const titleVisible = ref(true)
+
+    const derivados = computed(() => d.derivados.items[categoria.value].map((it) => ({ ...it, action: it.action ? { icon: 'ic-shopping-cart', label: `Comprar ${it.name}` } : undefined })))
+    const verTodos = computed(() => d.derivados.verTodos[categoria.value])
+    const tabIds = d.tabs.map((_, i) => ({ id: `ficha-tab-${i}`, panelId: 'ficha-panel', label: d.tabs[i].label }))
+    const onResumenAction = (it) => { if (it.concept === 'Mercado') sheetOpen.value = true }
+
+    return { d, tab, period, categoria, sheetOpen, titleVisible, derivados, verTodos, tabIds, onResumenAction, IcArrowRight }
+  },
+  template: `
+    <TemplateDetail>
+      <template #header><Menu type="default" /></template>
+      <template #header-extra>
+        <FixedProductTitle :visible="!titleVisible" :product-name="d.producto.productName" :logo-u-r-l="d.producto.logoURL" :price="d.producto.price" :currency="d.producto.currency" :variation="d.producto.variation" />
+      </template>
+
+      <R4Wrapper density="compact" class="ficha__w1">
+        <div class="r4-grid">
+          <div class="ficha__col"><R4PageTitleProduct v-bind="d.producto" @visible-change="titleVisible = $event" /></div>
+        </div>
+      </R4Wrapper>
+
+      <R4Wrapper density="compact" class="ficha__w2">
+        <div class="r4-grid">
+          <div class="ficha__col"><R4Tabs :tabs="tabIds" :active-tab="tab" type="title" layout="scrollable" aria-label="Secciones del producto" @change="tab = $event" /></div>
+          <div id="ficha-panel" class="ficha__panel" role="tabpanel" :aria-labelledby="'ficha-tab-' + tab">
+            <template v-if="tab === 0">
+              <div class="ficha__chart">
+                <R4ChartLine timeline="today" :points="d.grafico.points" :domain="d.grafico.domain" :progress="d.grafico.progress" :y-labels="d.grafico.yLabels" :x-labels="d.grafico.xLabels"
+                             :periods="d.grafico.periods" :selected-period="period" aria-label="Evolución del precio de IBERDROLA en el día de hoy" @period="period = $event" />
+              </div>
+              <R4Section class="ficha__resumen" appearance="boxed" background-color="white" title="Resumen">
+                <R4ListDetail size="medium" :items="d.resumen" @action="onResumenAction" />
+              </R4Section>
+            </template>
+            <p v-else class="ficha__placeholder">Contenido de «{{ d.tabs[tab].label }}» no incluido en el prototipo.</p>
+          </div>
+        </div>
+      </R4Wrapper>
+
+      <R4Wrapper v-if="tab === 0" density="compact" class="ficha__w3">
+        <div class="r4-grid">
+          <R4Section class="ficha__derivados" appearance="boxed" background-color="white" title="Derivados">
+            <div class="ficha__filters" role="group" aria-label="Tipo de derivado">
+              <R4Chip v-for="c in d.derivados.categorias" :key="c.id" size="small" :label="c.label" :selected="categoria === c.id" @click="categoria = c.id" />
+            </div>
+            <ul class="ficha__results">
+              <SearchResultItem v-for="(it, i) in derivados" :key="categoria + i" :name="it.name" :meta="it.meta" :price="it.price" :variation="it.variation" :tone="it.tone" :action="it.action" />
+            </ul>
+            <template v-if="verTodos">
+              <R4Button class="ficha__ver-todos-desktop" type="text" size="medium" icon="ic-external-link" :text="verTodos" />
+              <R4Link class="ficha__ver-todos-mobile" type="standalone" size="medium" href="#" :icon-right="IcArrowRight">{{ verTodos }}</R4Link>
+            </template>
+          </R4Section>
+
+          <R4Section class="ficha__reco" appearance="boxed" background-color="white" title="Recomendación Renta 4">
+            <div class="ficha__gauge"><ChartGauge :angle="d.recomendacion.gaugeAngle" :aria-label="'Recomendación: ' + d.recomendacion.tag" /></div>
+            <R4Tag class="ficha__reco-tag" color="neutralDark" size="medium" :text="d.recomendacion.tag" />
+            <R4ListDetail size="medium" :items="d.recomendacion.rows" />
+            <R4Button class="ficha__reco-cta" type="text" size="medium" width="full-width" icon="ic-file-alt" :text="d.recomendacion.cta" />
+          </R4Section>
+        </div>
+      </R4Wrapper>
+
+      <template #dock>
+        <R4ButtonDock>
+          <ProductActionsMenu :actions="d.producto.secondaryActions" placement="up" />
+          <R4Button type="primary" :text="d.producto.ctaText" />
+        </R4ButtonDock>
+      </template>
+
+      <template #overlay>
+        <R4Sheet class="ficha__sheet ficha__sheet--side" position="side" title="En otros mercados" :open="sheetOpen" @close="sheetOpen = false">
+          <ul class="ficha__results"><SearchResultItem v-for="m in d.otrosMercados" :key="m.name" v-bind="m" /></ul>
+        </R4Sheet>
+        <R4Sheet class="ficha__sheet ficha__sheet--bottom" position="bottom" title="En otros mercados" :open="sheetOpen" @close="sheetOpen = false">
+          <ul class="ficha__results"><SearchResultItem v-for="m in d.otrosMercados" :key="m.name" v-bind="m" /></ul>
+        </R4Sheet>
+      </template>
+    </TemplateDetail>
+  `,
+})

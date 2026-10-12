@@ -3,6 +3,7 @@
 // las APIs de la documentación esperan en iconLeft / iconRight (Component | null).
 import { defineComponent, computed, h } from '../../vendor/vue.esm-browser.prod.js'
 import { icons } from './icons.js'
+import './icons.ficha.js' // registra los iconos de la ficha de producto en el mismo registro
 
 const Icon = defineComponent({
   name: '_Icon',

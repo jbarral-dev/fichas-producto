@@ -1,0 +1,49 @@
+/*
+ * searchResultItem — valores leídos de Figma: fila con padding 8 vertical / 4 horizontal, gap 12; contenido gap 16: columna izquierda (nombre body/m SemiBold text/default +
+ * línea secundaria body/s Regular text/muted, gap 4, con wrap) y columna derecha alineada a la derecha (precio body/m Bold text/subdued; variación body/xs SemiBold).
+ * Logo opcional de 32 a la izquierda. Con acción en mobile (Figma): precio body/s Regular text/default, variación body/s Regular muted y botón de icono de 40 a la derecha.
+ */
+.r4-searchresult {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-3);
+  margin: 0;
+  padding: var(--spacing-2) var(--spacing-1);
+  list-style: none;
+  font-family: var(--font-family-body);
+}
+.r4-searchresult__logo { flex: none; width: var(--spacing-8); height: var(--spacing-8); }
+
+.r4-searchresult__content { display: flex; flex: 1 1 0; align-items: center; gap: var(--spacing-4); min-width: 0; }
+.r4-searchresult__left { display: flex; flex: 1 1 0; flex-direction: column; justify-content: center; min-width: 0; }
+
+.r4-searchresult__name {
+  color: var(--text-default);
+  font-size: var(--size-body-m);
+  line-height: var(--line-height-body-m);
+  font-weight: var(--font-weight-semibold);
+  text-decoration: none;
+}
+/* La fila entera es clicable: el enlace del nombre se estira sobre la fila (un solo elemento interactivo) */
+.r4-searchresult__name::after { content: ''; position: absolute; inset: 0; }
+.r4-searchresult__name:hover { text-decoration: underline; }
+.r4-searchresult__name:focus-visible { outline: 0; }
+.r4-searchresult__name:focus-visible::after { box-shadow: var(--effect-card-focus-outline); border-radius: var(--radius-xs); }
+
+.r4-searchresult__meta { display: flex; flex-wrap: wrap; align-items: center; gap: var(--spacing-1); color: var(--text-muted); font-size: var(--size-body-s); line-height: var(--line-height-body-s); }
+
+.r4-searchresult__right { display: flex; flex: none; flex-direction: column; align-items: flex-end; justify-content: center; text-align: right; white-space: nowrap; }
+.r4-searchresult__price { color: var(--text-subdued); font-size: var(--size-body-m); line-height: var(--line-height-body-m); font-weight: var(--font-weight-bold); }
+.r4-searchresult__variation { font-size: var(--size-body-xs); line-height: var(--line-height-body-xs); font-weight: var(--font-weight-semibold); }
+.r4-searchresult__variation.is-positive { color: var(--chart-positive); }
+.r4-searchresult__variation.is-negative { color: var(--chart-negative); }
+.r4-searchresult__variation.is-muted { color: var(--text-muted); }
+
+/* La acción (botón de compra) solo existe en el diseño mobile */
+.r4-searchresult .r4-searchresult__action.r4-button { display: none; position: relative; z-index: 1; flex: none; color: var(--accent-link); }
+@container r4page (max-width: 599px) {
+  .r4-searchresult.has-action .r4-searchresult__action.r4-button { display: flex; }
+  .r4-searchresult.has-action .r4-searchresult__price { color: var(--text-default); font-size: var(--size-body-s); line-height: var(--line-height-body-s); font-weight: var(--font-weight-regular); }
+  .r4-searchresult.has-action .r4-searchresult__variation { font-size: var(--size-body-s); line-height: var(--line-height-body-s); font-weight: var(--font-weight-regular); }
+}

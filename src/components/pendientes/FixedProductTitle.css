@@ -1,0 +1,37 @@
+/*
+ * FixedProductTitle — valores leídos de Figma: fondo surface/default, borde inferior 1 px border/subtle, padding 12 (spacing/3), alto 48 (12 + 24 + 12).
+ * Izquierda: logo 20 + nombre (body/m Regular, text/default, truncado con elipsis), gap 8, padding derecho 24. Derecha: variación (Exo 2 Medium 12/24 en chart/positive|negative)
+ * y precio (Exo 2 SemiBold 16/24, text/default), gap 4. Solo mobile.
+ */
+.r4-fixedproducttitle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: var(--spacing-3);
+  background: var(--surface-default);
+  box-shadow: inset 0 calc(var(--r4-line-width) * -1) 0 var(--border-subtle);
+}
+.r4-fixedproducttitle__left { display: flex; flex: 1 1 0; align-items: center; gap: var(--spacing-2); min-width: 0; padding-right: var(--spacing-6); }
+.r4-fixedproducttitle__logo { flex: none; width: var(--spacing-5); height: var(--spacing-5); }
+.r4-fixedproducttitle__name {
+  min-width: 0;
+  overflow: hidden;
+  color: var(--text-default);
+  font-family: var(--font-family-body);
+  font-size: var(--size-body-m);
+  line-height: var(--line-height-body-m);
+  font-weight: var(--font-weight-regular);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.r4-fixedproducttitle__right { display: flex; flex: none; align-items: center; justify-content: flex-end; gap: var(--spacing-1); font-family: var(--font-family-headings); white-space: nowrap; text-align: right; }
+.r4-fixedproducttitle__variation { font-size: var(--size-body-xs); line-height: var(--line-height-body-m); font-weight: var(--font-weight-medium); }
+.r4-fixedproducttitle__variation.is-positive { color: var(--chart-positive); }
+.r4-fixedproducttitle__variation.is-negative { color: var(--chart-negative); }
+.r4-fixedproducttitle__price { color: var(--text-default); font-size: var(--size-body-m); line-height: var(--line-height-body-m); font-weight: var(--font-weight-semibold); }
+
+@container r4page (min-width: 600px) {
+  .r4-fixedproducttitle { display: none; }
+}

@@ -1,0 +1,42 @@
+.template-detail__container {
+  container-type: inline-size;
+  container-name: r4page;
+  min-height: 100vh;
+  background: var(--surface-page);
+}
+
+.template-detail__page {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* Cabecera (Menu + barra fija opcional): fija al hacer scroll en tablet y mobile (barra compacta de 56); en desktop va estática (franja + barra de 134, no se ha pedido fija) */
+.template-detail__header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  width: 100%;
+}
+@container r4page (min-width: 1024px) {
+  .template-detail__header { position: static; }
+}
+
+.template-detail__main {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  align-items: stretch;
+  width: 100%;
+}
+
+/* Capa de superposición: tamaño de viewport, no intercepta eventos salvo en sus hijos (R4Sheet) */
+.template-detail__overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 300;
+  container-type: inline-size;
+  container-name: r4page;
+  pointer-events: none;
+}
+.template-detail__overlay > .r4-layout-modes { width: 100%; height: 100%; }

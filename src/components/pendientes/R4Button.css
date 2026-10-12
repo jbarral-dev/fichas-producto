@@ -103,3 +103,16 @@
 
 /* Iconos del botón: 16 px (spacing/4) en Figma */
 .r4-button .r4-icon { width: var(--spacing-4); height: var(--spacing-4); }
+
+/* ── size=medium (Figma: 32 px de alto, padding horizontal 12, texto 16/24) ── */
+.r4-button--medium {
+  height: var(--component-button-size-medium);
+  padding: 0 var(--spacing-3);
+  font-size: var(--size-body-m);
+  line-height: var(--line-height-body-m);
+}
+.r4-button--medium .r4-button__content { height: var(--component-button-size-medium); }
+.r4-button--medium.r4-button--content-icon { width: var(--component-button-size-medium); padding: 0; }
+
+/* type=text con texto: subrayado en todos los estados (Figma) */
+.r4-button--text:not(.r4-button--content-icon) .r4-button__text { text-decoration: underline; }
