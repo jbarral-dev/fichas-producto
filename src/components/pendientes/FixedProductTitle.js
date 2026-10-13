@@ -3,7 +3,7 @@
 // en mobile y salir R4PageTitleProduct del viewport, queda fija justo debajo de la cabecera con el nombre del producto (truncado), el precio y la variación.
 // Asociada a R4PageTitleProduct (Jon): la Template la muestra cuando el título emite `visible-change = false` y la mete en la cabecera sticky (debajo del Menu).
 // Aparece y desaparece con fundido (fadeIn / fadeOut, 0,2 s; sin animación con prefers-reduced-motion).
-// Solo mobile (el CSS la oculta a partir de 600 px). Sin interacción: texto + logo decorativo. aria-hidden mientras no es visible (v-show).
+// Se muestra en todos los anchos (Figma solo la diseña en mobile; en desktop/tablet es el mismo diseño alineado con la rejilla, a petición de Jon). Sin interacción: texto + logo decorativo. aria-hidden mientras no es visible (v-show).
 // Props (propias del prototipo; sin API definida): productName, logoURL, price, currency, variation (número, % con signo), visible.
 import { defineComponent, computed } from '../../../vendor/vue.esm-browser.prod.js'
 
@@ -27,6 +27,7 @@ export default defineComponent({
   template: `
     <Transition name="r4-fixedproducttitle">
     <div v-show="visible" class="r4-fixedproducttitle" :aria-hidden="visible ? undefined : 'true'">
+      <div class="r4-fixedproducttitle__inner">
       <div class="r4-fixedproducttitle__left">
         <img v-if="logoURL" class="r4-fixedproducttitle__logo" :src="logoURL" alt="" aria-hidden="true" />
         <span class="r4-fixedproducttitle__name">{{ productName }}</span>
@@ -34,6 +35,7 @@ export default defineComponent({
       <div class="r4-fixedproducttitle__right">
         <span v-if="variation !== undefined" class="r4-fixedproducttitle__variation" :class="variation >= 0 ? 'is-positive' : 'is-negative'">{{ variationText }}</span>
         <span class="r4-fixedproducttitle__price">{{ fmt(price) }}{{ symbol }}</span>
+      </div>
       </div>
     </div>
     </Transition>

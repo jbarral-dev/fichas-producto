@@ -49,14 +49,18 @@ export default defineComponent({
     const sign = computed(() => (props.variation >= 0 ? '+' : '−'))
     const tone = computed(() => (props.variation >= 0 ? 'positive' : 'negative'))
 
-    // Avisa a la Template cuando el bloque sale del viewport (por debajo de la cabecera fija) para mostrar FixedProductTitle en mobile.
+    // Avisa a la Template cuando el bloque sale del viewport (por debajo de la cabecera fija) para mostrar FixedProductTitle (todos los anchos).
+    // El margen superior es la altura real del Menu (134 en desktop, 56 en tablet/mobile); se recalcula al cambiar el tamaño de la ventana.
     let io = null
-    onMounted(() => {
-      const menu = parseFloat(getComputedStyle(root.value).getPropertyValue('--r4-menu-height')) || 0
-      io = new IntersectionObserver(([e]) => emit('visible-change', e.isIntersecting), { rootMargin: `-${menu}px 0px 0px 0px` })
+    const observe = () => {
+      if (io) io.disconnect()
+      const menu = root.value.closest('.template-detail__header, body')?.querySelector('.menu')
+      const top = menu ? menu.getBoundingClientRect().height : parseFloat(getComputedStyle(root.value).getPropertyValue('--r4-menu-height')) || 0
+      io = new IntersectionObserver(([e]) => emit('visible-change', e.isIntersecting), { rootMargin: `-${Math.round(top)}px 0px 0px 0px` })
       io.observe(root.value)
-    })
-    onBeforeUnmount(() => io && io.disconnect())
+    }
+    onMounted(() => { observe(); window.addEventListener('resize', observe) })
+    onBeforeUnmount(() => { window.removeEventListener('resize', observe); io && io.disconnect() })
 
     return { root, isFav, toggleFav, symbol, priceText, variationText, sign, tone }
   },

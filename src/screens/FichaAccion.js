@@ -7,7 +7,7 @@
 //   corrigen en mobile/tablet los espacios entre wrappers con márgenes derivados de la density (ver ficha-accion.css).
 // Interacciones: tabs (solo «Detalle» tiene contenido diseñado) · periodos del gráfico (la serie no cambia: datos de ejemplo) · chips de Derivados (muestran los derivados de esa categoría,
 //   como en la variante con Opciones del Figma) · «Mercado» del Resumen abre el sheet «En otros mercados» (bottom en <1024, side en ≥1024) · en mobile el título del producto, al salir del
-//   viewport, deja fija bajo la cabecera la caja FixedProductTitle y las acciones van en el R4ButtonDock.
+//   viewport, deja fija bajo la cabecera la caja FixedProductTitle (también en desktop/tablet por petición de Jon) y las acciones van en el R4ButtonDock.
 // Datos de ejemplo: src/data/ficha-accion.js.
 import { defineComponent, ref, computed, nextTick, onMounted, onBeforeUnmount } from '../../vendor/vue.esm-browser.prod.js'
 import TemplateDetail from '../templates/TemplateDetail.js'
