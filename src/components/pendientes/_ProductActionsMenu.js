@@ -37,10 +37,10 @@ export default defineComponent({
   },
   template: `
     <div ref="root" class="r4-actionsmenu" @keydown="onKeydown">
-      <R4Button class="r4-actionsmenu__trigger" type="secondary" icon="ic-ellipsis-v" aria-label="Más acciones" aria-haspopup="true" :aria-expanded="open ? 'true' : 'false'" :aria-controls="open ? menuId : undefined" @click="toggle" />
+      <R4Button class="r4-actionsmenu__trigger" type="secondary" :pressed="open" icon="ic-ellipsis-v" aria-label="Más acciones" aria-haspopup="true" :aria-expanded="open ? 'true' : 'false'" :aria-controls="open ? menuId : undefined" @click="toggle" />
       <div v-if="open && !asSheet" :id="menuId" class="r4-actionsmenu__popover" :class="'r4-actionsmenu__popover--' + placement">
         <R4Popover width="wide" density="none">
-          <R4NavigationItems size="medium" density="narrow" :items="items(actions)" aria-label="Más acciones" @select="(it, e) => choose(it._a, e)" />
+          <R4NavigationItems size="medium" density="narrow" :icon-is-boxed="false" :items="items(actions)" aria-label="Más acciones" @select="(it, e) => choose(it._a, e)" />
         </R4Popover>
       </div>
     </div>

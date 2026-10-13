@@ -6,6 +6,7 @@
 // Reconstruido (leído en Figma): size small y medium, orientation horizontal, valor tipo texto (con icono/bandera opcional), concepto con botón de información
 // (tooltip: R4Tooltip NO está reconstruido, el botón solo emite `info`) y una acción de icono por fila. NO reconstruido: orientation vertical/tabular, _Point,
 // valor account / link / switch / tag, segunda acción, size large y extraLarge (se declaran en la API pero usan los valores de medium).
+// Extra: action.pressed mantiene el botón en estado pressed (y aria-expanded si action.haspopup) mientras el popover/sheet que abre está visible.
 // Altura de fila: small 36 + 8 (separador) · medium 40 + 16.
 import { defineComponent, computed } from '../../../vendor/vue.esm-browser.prod.js'
 import Icon from '../../icons/_Icon.js'
@@ -36,7 +37,7 @@ export default defineComponent({
             <Icon v-if="it.valueIcon" class="r4-listdetail__value-icon" :name="it.valueIcon" />
             <span class="r4-listdetail__value-text">{{ it.value }}</span>
             <div v-if="it.action" class="r4-listdetail__actions" role="toolbar" :aria-label="'Acciones de ' + it.concept">
-              <R4Button class="r4-listdetail__action" type="text" size="medium" :icon="it.action.icon" :aria-label="it.action.label" @click="$emit('action', it, $event)" />
+              <R4Button class="r4-listdetail__action" type="text" size="medium" :pressed="!!it.action.pressed" :aria-haspopup="it.action.haspopup ? 'true' : undefined" :aria-expanded="it.action.haspopup ? (it.action.pressed ? 'true' : 'false') : undefined" :icon="it.action.icon" :aria-label="it.action.label" @click="$emit('action', it, $event)" />
             </div>
           </component>
         </div>

@@ -49,3 +49,6 @@
 .r4-navitems__item.is-disabled .r4-navitems__title,
 .r4-navitems__item.is-disabled .r4-navitems__description { color: var(--text-disabled); }
 .r4-navitems__item.is-disabled .r4-navitems__chevron { color: var(--icon-disabled); }
+
+/* iconIsBoxed=false (R4Icon style=plain): sin caja ni fondo, icono de 20 en gris oscuro (component/icon/plain/neutralDark) */
+.r4-navitems__icon:not(.r4-navitems__icon--boxed) { width: var(--spacing-5); height: var(--spacing-5); color: var(--component-icon-plain-neutraldark); }

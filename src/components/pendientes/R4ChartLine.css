@@ -40,29 +40,6 @@
 .r4-chartline__area { opacity: 0.8; }
 .r4-chartline__line { stroke: var(--chart-series-1-solid); stroke-width: var(--spacing-05); stroke-linecap: square; stroke-linejoin: bevel; vector-effect: non-scaling-stroke; }
 
-/* Indicador: el contenedor mide 0 de ancho y se coloca en el último punto de la serie */
-.r4-chartline__indicator { position: absolute; width: 0; height: 0; pointer-events: none; }
-.r4-chartline__indicator-line {
-  position: absolute;
-  left: 0;
-  top: 0;
-  height: var(--r4-chart-plot-height);
-  width: var(--r4-line-width);
-  background: var(--chart-baseline);
-}
-.r4-chartline__indicator-dot {
-  position: absolute;
-  left: calc(var(--spacing-2) * -1);
-  top: calc(var(--spacing-2) * -1);
-  width: var(--spacing-4);
-  height: var(--spacing-4);
-  box-sizing: border-box;
-  border: var(--spacing-05) solid var(--surface-default);
-  border-radius: var(--radius-full);
-  background: var(--chart-series-1-solid);
-  box-shadow: 0 var(--spacing-2) var(--spacing-2) color-mix(in srgb, var(--color-neutral-black) 8%, transparent);
-}
-
 .r4-chartline__x {
   display: flex;
   align-items: center;
@@ -83,3 +60,33 @@
   .r4-chartline .r4-segmented { --r4-segmented-height: var(--spacing-10); }
   .r4-chartline__x span:nth-child(even) { display: none; }
 }
+
+/* Indicador: contenedor de 0 de ancho en el último punto. El punto va en top = y %; su ::after es la línea vertical hasta la base (el plot recorta por abajo). */
+.r4-chartline__plot { clip-path: inset(calc(var(--spacing-2) * -1) calc(var(--spacing-2) * -1) 0 calc(var(--spacing-2) * -1)); }
+.r4-chartline__indicator { position: absolute; top: 0; width: 0; height: 100%; pointer-events: none; }
+.r4-chartline__indicator-dot {
+  position: absolute;
+  left: calc(var(--spacing-2) * -1);
+  top: calc(var(--r4-y) * 1% - var(--spacing-2));
+  width: var(--spacing-4);
+  height: var(--spacing-4);
+  box-sizing: border-box;
+  border: var(--spacing-05) solid var(--surface-default);
+  border-radius: var(--radius-full);
+  background: var(--chart-series-1-solid);
+  box-shadow: 0 var(--spacing-2) var(--spacing-2) color-mix(in srgb, var(--color-neutral-black) 8%, transparent);
+}
+
+/* Animación de carga: de 0 (base) al valor */
+@keyframes r4-chartline-grow { from { transform: scaleY(0); } to { transform: scaleY(1); } }
+@keyframes r4-chartline-dot { from { top: calc(100% - var(--spacing-2)); } }
+.r4-chartline__svg { transform-origin: bottom; animation: r4-chartline-grow 1.2s cubic-bezier(0.22, 1, 0.36, 1) both; }
+.r4-chartline__indicator-dot { animation: r4-chartline-dot 1.2s cubic-bezier(0.22, 1, 0.36, 1) both; }
+@media (prefers-reduced-motion: reduce) {
+  .r4-chartline__svg, .r4-chartline__indicator-dot { animation: none; }
+}
+
+/* Línea vertical del indicador: del punto a la base, animada igual que el punto */
+.r4-chartline__indicator::before { content: ''; position: absolute; left: 0; top: calc(var(--r4-y) * 1%); bottom: 0; width: var(--r4-line-width); background: var(--chart-baseline); animation: r4-chartline-line 1.2s cubic-bezier(0.22, 1, 0.36, 1) both; }
+@keyframes r4-chartline-line { from { top: 100%; } }
+@media (prefers-reduced-motion: reduce) { .r4-chartline__indicator::before { animation: none; } }

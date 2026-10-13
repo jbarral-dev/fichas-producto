@@ -9,7 +9,7 @@
 //   como en la variante con Opciones del Figma) · «Mercado» del Resumen abre el sheet «En otros mercados» (bottom en <1024, side en ≥1024) · en mobile el título del producto, al salir del
 //   viewport, deja fija bajo la cabecera la caja FixedProductTitle y las acciones van en el R4ButtonDock.
 // Datos de ejemplo: src/data/ficha-accion.js.
-import { defineComponent, ref, computed, onMounted, onBeforeUnmount } from '../../vendor/vue.esm-browser.prod.js'
+import { defineComponent, ref, computed, nextTick, onMounted, onBeforeUnmount } from '../../vendor/vue.esm-browser.prod.js'
 import TemplateDetail from '../templates/TemplateDetail.js'
 import Menu from '../components/pendientes/Menu.js'
 import FixedProductTitle from '../components/pendientes/FixedProductTitle.js'
@@ -58,20 +58,28 @@ export default defineComponent({
     const popover = ref(null) // { top, right } del popover «En otros mercados» (desktop), relativo al Resumen
     const actionsSheetOpen = ref(false)
     const closePopover = () => { popover.value = null }
-    const onResumenAction = (it, e) => {
+    const mercadoOpen = computed(() => !!popover.value || sheetOpen.value)
+    const resumen = computed(() => d.resumen.map((r) => (r.action ? { ...r, action: { ...r.action, haspopup: true, pressed: mercadoOpen.value } } : r)))
+    const onResumenAction = async (it, e) => {
       if (it.concept !== 'Mercado') return
-      sheetOpen.value = true // mobile y tablet: bottom sheet (el CSS oculta el que no toca)
+      if (mercadoOpen.value) { popover.value = null; sheetOpen.value = false; return } // segundo clic: cierra
       const btn = e && e.currentTarget
       const box = btn && btn.closest('.ficha__resumen')
       if (box) { const b = btn.getBoundingClientRect(); const s = box.getBoundingClientRect(); popover.value = { top: b.bottom - s.top + 8, right: s.right - b.right } }
+      sheetOpen.value = true
+      await nextTick()
+      // El CSS decide cuál se ve (popover en ≥ 1024, bottom sheet por debajo): se descarta el que quede oculto para no duplicar estado
+      const sheet = document.querySelector('.ficha__sheet--market')
+      if (sheet && getComputedStyle(sheet).display === 'none') sheetOpen.value = false
+      else popover.value = null
     }
-    const onDocClick = (e) => { if (popover.value && !e.target.closest('.ficha__market-popover, .r4-listdetail__action')) closePopover() }
+    const onDocClick = (e) => { if (popover.value && !e.target.closest('.ficha__market-popover, .ficha__resumen .r4-listdetail__action')) closePopover() }
     const onKey = (e) => { if (e.key === 'Escape') closePopover() }
     onMounted(() => { document.addEventListener('click', onDocClick); document.addEventListener('keydown', onKey) })
     onBeforeUnmount(() => { document.removeEventListener('click', onDocClick); document.removeEventListener('keydown', onKey) })
     const actionItems = d.producto.secondaryActions.map((a) => ({ title: a.label, icon: a.icon, showLink: a.showLink, linkHref: '#' }))
 
-    return { popover, actionsSheetOpen, actionItems, d, tab, period, categoria, sheetOpen, titleVisible, derivados, verTodos, tabIds, onResumenAction, IcArrowRight }
+    return { resumen, popover, actionsSheetOpen, actionItems, d, tab, period, categoria, sheetOpen, titleVisible, derivados, verTodos, tabIds, onResumenAction, IcArrowRight }
   },
   template: `
     <TemplateDetail>
@@ -96,7 +104,7 @@ export default defineComponent({
                              :periods="d.grafico.periods" :selected-period="period" aria-label="Evolución del precio de IBERDROLA en el día de hoy" @period="period = $event" />
               </div>
               <R4Section class="ficha__resumen" appearance="boxed" background-color="white" title="Resumen">
-                <R4ListDetail size="medium" :items="d.resumen" @action="onResumenAction" />
+                <R4ListDetail size="medium" :items="resumen" @action="onResumenAction" />
                 <div v-if="popover" class="ficha__market-popover" role="dialog" aria-label="En otros mercados" :style="{ top: popover.top + 'px', right: popover.right + 'px' }">
                   <R4Popover width="wide">
                     <p class="ficha__market-title">En otros mercados</p>
@@ -146,7 +154,7 @@ export default defineComponent({
           <ul class="ficha__results"><SearchResultItem v-for="m in d.otrosMercados" :key="m.name" v-bind="m" /></ul>
         </R4Sheet>
         <R4Sheet class="ficha__sheet ficha__sheet--actions" position="bottom" title="Más acciones" :open="actionsSheetOpen" @close="actionsSheetOpen = false">
-          <R4NavigationItems size="medium" density="narrow" :items="actionItems" aria-label="Más acciones" @select="actionsSheetOpen = false" />
+          <R4NavigationItems size="medium" density="narrow" :icon-is-boxed="false" :items="actionItems" aria-label="Más acciones" @select="actionsSheetOpen = false" />
         </R4Sheet>
       </template>
     </TemplateDetail>

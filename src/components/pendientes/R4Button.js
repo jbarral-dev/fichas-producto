@@ -18,13 +18,14 @@ export default defineComponent({
     size: { type: String, default: 'large', validator: (v) => ['large', 'medium'].includes(v) },
     width: { type: String, default: 'auto', validator: (v) => ['auto', 'full-width'].includes(v) },
     disabled: { type: Boolean, default: false },
+    pressed: { type: Boolean, default: false }, // extra: fuerza el estado pressed (botones que abren un popover/sheet y lo mantienen mientras está abierto)
     icon: { type: String, default: undefined }, // nombre del icono (componente de Figma). Obligatorio si no hay text
     text: { type: String, default: undefined }, // obligatorio si no hay icon
   },
   emits: ['click'],
   setup(props) {
     const content = computed(() => (props.icon && props.text ? 'iconAndText' : props.icon ? 'icon' : 'text'))
-    const classes = computed(() => ['r4-button', `r4-button--${props.type}`, `r4-button--${props.size}`, `r4-button--content-${content.value}`, { 'r4-button--full-width': props.width === 'full-width' }])
+    const classes = computed(() => ['r4-button', `r4-button--${props.type}`, `r4-button--${props.size}`, `r4-button--content-${content.value}`, { 'r4-button--full-width': props.width === 'full-width', 'r4-button--pressed': props.pressed }])
     return { content, classes }
   },
   template: `

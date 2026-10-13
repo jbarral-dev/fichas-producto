@@ -39,7 +39,7 @@
   font-weight: var(--font-weight-bold);
 }
 .r4-button--primary:hover { background: var(--accent-hover); }
-.r4-button--primary:active { background: var(--accent-pressed); color: var(--accent-text-on-accent); }
+.r4-button--primary:active, .r4-button--primary.r4-button--pressed { background: var(--accent-pressed); color: var(--accent-text-on-accent); }
 .r4-button--primary:focus-visible { outline: 0; box-shadow: var(--effect-card-focus-outline); }
 .r4-button--primary:disabled {
   background: var(--component-button-primary-bg-disabled);
@@ -54,7 +54,7 @@
   font-weight: var(--font-weight-semibold);
 }
 .r4-button--text:hover { background: var(--component-button-text-bg-hover); color: var(--accent-link-hover); }
-.r4-button--text:active { background: var(--component-button-text-bg-pressed); color: var(--accent-link-hover); }
+.r4-button--text:active, .r4-button--text.r4-button--pressed { background: var(--component-button-text-bg-pressed); color: var(--accent-link-hover); }
 .r4-button--text:focus-visible { outline: 0; box-shadow: var(--effect-card-focus-outline); }
 .r4-button--text:disabled { color: var(--text-disabled); cursor: not-allowed; /* Changelog SM-19378 */ }
 
@@ -79,7 +79,7 @@
   background: var(--component-button-secondary-bg-hover);
   color: var(--accent-text-hover);
 }
-.r4-button--secondary:active {
+.r4-button--secondary:active, .r4-button--secondary.r4-button--pressed {
   box-shadow: inset 0 0 0 var(--r4-line-width) var(--component-button-secondary-border-hover);
   background: var(--component-button-secondary-bg-pressed);
   color: var(--accent-text-hover);

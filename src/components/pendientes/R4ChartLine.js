@@ -9,6 +9,7 @@
 // - Desktop y mobile usan el R4SegmentedControls de Figma: large (48) en desktop, medium (40) en mobile (se gobierna con --r4-segmented-height).
 // Reconstruido: estado Interaction=default con el indicador en el último punto. NO reconstruido: Interaction=hover (tooltip con valores y línea de seguimiento),
 // la serie de "Entradas/Salidas" ni la leyenda (de la variante de patrimonio de la doc), Timeline=periods con etiquetas de meses.
+// Al cargar, la serie «se rellena»: el trazo y el área crecen desde la base hasta su valor y el punto sube hasta el último dato (CSS, 1,2 s; sin animación con prefers-reduced-motion).
 // El gráfico es informativo: role="img" con aria-label; los datos exactos deberían ofrecerse también como texto (pendiente de accesibilidad en la doc).
 import { defineComponent, computed } from '../../../vendor/vue.esm-browser.prod.js'
 import R4SegmentedControls from './R4SegmentedControls.js'
@@ -61,8 +62,8 @@ export default defineComponent({
               <path class="r4-chartline__area" :d="geometry.area" :fill="'url(#' + gradientId + ')'" />
               <path class="r4-chartline__line" :d="geometry.line" />
             </svg>
-            <div class="r4-chartline__indicator" :style="{ left: geometry.last.x + '%', top: geometry.last.y + '%' }">
-              <span class="r4-chartline__indicator-line"></span><span class="r4-chartline__indicator-dot"></span>
+            <div class="r4-chartline__indicator" :style="{ left: geometry.last.x + '%', '--r4-y': geometry.last.y }">
+              <span class="r4-chartline__indicator-dot"></span>
             </div>
           </div>
           <div class="r4-chartline__x" aria-hidden="true"><span v-for="(l, i) in xLabels" :key="i">{{ l }}</span></div>
