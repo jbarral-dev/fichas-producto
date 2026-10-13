@@ -54,7 +54,7 @@ export const accion = {
     { concept: 'Ticker', value: 'IBE' },
     { concept: 'ISIN', value: 'ES0144580Y14' },
     { concept: 'Riesgo', value: '6/6', info: { label: 'Más información sobre el riesgo' } },
-    { concept: 'Mercado', value: 'BME', valueIcon: 'flag-spain', action: { icon: 'ic-angle-down', label: 'Ver el producto en otros mercados' } },
+    { concept: 'Mercado', value: 'BME', valueIcon: 'flag-spain', action: { icon: 'ic-angle-down', iconPressed: 'ic-angle-up', label: 'Ver el producto en otros mercados' } },
   ],
 
   derivados: {

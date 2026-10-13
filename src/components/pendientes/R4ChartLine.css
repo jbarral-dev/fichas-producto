@@ -77,16 +77,5 @@
   box-shadow: 0 var(--spacing-2) var(--spacing-2) color-mix(in srgb, var(--color-neutral-black) 8%, transparent);
 }
 
-/* Animación de carga: de 0 (base) al valor */
-@keyframes r4-chartline-grow { from { transform: scaleY(0); } to { transform: scaleY(1); } }
-@keyframes r4-chartline-dot { from { top: calc(100% - var(--spacing-2)); } }
-.r4-chartline__svg { transform-origin: bottom; animation: r4-chartline-grow 1.2s cubic-bezier(0.22, 1, 0.36, 1) both; }
-.r4-chartline__indicator-dot { animation: r4-chartline-dot 1.2s cubic-bezier(0.22, 1, 0.36, 1) both; }
-@media (prefers-reduced-motion: reduce) {
-  .r4-chartline__svg, .r4-chartline__indicator-dot { animation: none; }
-}
-
-/* Línea vertical del indicador: del punto a la base, animada igual que el punto */
-.r4-chartline__indicator::before { content: ''; position: absolute; left: 0; top: calc(var(--r4-y) * 1%); bottom: 0; width: var(--r4-line-width); background: var(--chart-baseline); animation: r4-chartline-line 1.2s cubic-bezier(0.22, 1, 0.36, 1) both; }
-@keyframes r4-chartline-line { from { top: 100%; } }
-@media (prefers-reduced-motion: reduce) { .r4-chartline__indicator::before { animation: none; } }
+/* Línea vertical del indicador: del punto a la base. La posición del punto la anima el componente (JS) al cargar. */
+.r4-chartline__indicator::before { content: ''; position: absolute; left: 0; top: calc(var(--r4-y) * 1%); bottom: 0; width: var(--r4-line-width); background: var(--chart-baseline); }
