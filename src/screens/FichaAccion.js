@@ -9,7 +9,7 @@
 //   como en la variante con Opciones del Figma) · «Mercado» del Resumen abre el sheet «En otros mercados» (bottom en <1024, side en ≥1024) · en mobile el título del producto, al salir del
 //   viewport, deja fija bajo la cabecera la caja FixedProductTitle y las acciones van en el R4ButtonDock.
 // Datos de ejemplo: src/data/ficha-accion.js.
-import { defineComponent, ref, computed } from '../../vendor/vue.esm-browser.prod.js'
+import { defineComponent, ref, computed, onMounted, onBeforeUnmount } from '../../vendor/vue.esm-browser.prod.js'
 import TemplateDetail from '../templates/TemplateDetail.js'
 import Menu from '../components/pendientes/Menu.js'
 import FixedProductTitle from '../components/pendientes/FixedProductTitle.js'
@@ -24,20 +24,24 @@ import R4Tag from '../components/pendientes/R4Tag.js'
 import R4Button from '../components/pendientes/R4Button.js'
 import R4Link from '../components/pendientes/R4Link.js'
 import R4Sheet from '../components/pendientes/R4Sheet.js'
+import R4Popover from '../components/pendientes/R4Popover.js'
+import R4NavigationItems from '../components/pendientes/R4NavigationItems.js'
 import R4ButtonDock from '../components/pendientes/R4ButtonDock.js'
 import _ProductActionsMenu from '../components/pendientes/_ProductActionsMenu.js'
 import _SearchResultItem from '../components/pendientes/_SearchResultItem.js'
 import _ChartGauge from '../components/pendientes/_ChartGauge.js'
 import { iconComponent } from '../icons/_Icon.js'
 import { accion } from '../data/ficha-accion.js'
+import dragScroll from '../directives/dragScroll.js'
 
 const IcArrowRight = iconComponent('ic-arrow-right')
 
 export default defineComponent({
   name: 'FichaAccion',
+  directives: { dragScroll },
   components: {
     TemplateDetail, Menu, FixedProductTitle, R4Wrapper, R4Section, R4PageTitleProduct, R4Tabs, R4ChartLine, R4ListDetail, R4Chip, R4Tag, R4Button, R4Link,
-    R4Sheet, R4ButtonDock, ProductActionsMenu: _ProductActionsMenu, SearchResultItem: _SearchResultItem, ChartGauge: _ChartGauge,
+    R4Sheet, R4Popover, R4NavigationItems, R4ButtonDock, ProductActionsMenu: _ProductActionsMenu, SearchResultItem: _SearchResultItem, ChartGauge: _ChartGauge,
   },
   setup() {
     document.title = `${accion.producto.productName} · Acciones · Renta 4`
@@ -51,9 +55,23 @@ export default defineComponent({
     const derivados = computed(() => d.derivados.items[categoria.value].map((it) => ({ ...it, action: it.action ? { icon: 'ic-shopping-cart', label: `Comprar ${it.name}` } : undefined })))
     const verTodos = computed(() => d.derivados.verTodos[categoria.value])
     const tabIds = d.tabs.map((_, i) => ({ id: `ficha-tab-${i}`, panelId: 'ficha-panel', label: d.tabs[i].label }))
-    const onResumenAction = (it) => { if (it.concept === 'Mercado') sheetOpen.value = true }
+    const popover = ref(null) // { top, right } del popover «En otros mercados» (desktop), relativo al Resumen
+    const actionsSheetOpen = ref(false)
+    const closePopover = () => { popover.value = null }
+    const onResumenAction = (it, e) => {
+      if (it.concept !== 'Mercado') return
+      sheetOpen.value = true // mobile y tablet: bottom sheet (el CSS oculta el que no toca)
+      const btn = e && e.currentTarget
+      const box = btn && btn.closest('.ficha__resumen')
+      if (box) { const b = btn.getBoundingClientRect(); const s = box.getBoundingClientRect(); popover.value = { top: b.bottom - s.top + 8, right: s.right - b.right } }
+    }
+    const onDocClick = (e) => { if (popover.value && !e.target.closest('.ficha__market-popover, .r4-listdetail__action')) closePopover() }
+    const onKey = (e) => { if (e.key === 'Escape') closePopover() }
+    onMounted(() => { document.addEventListener('click', onDocClick); document.addEventListener('keydown', onKey) })
+    onBeforeUnmount(() => { document.removeEventListener('click', onDocClick); document.removeEventListener('keydown', onKey) })
+    const actionItems = d.producto.secondaryActions.map((a) => ({ title: a.label, icon: a.icon, showLink: a.showLink, linkHref: '#' }))
 
-    return { d, tab, period, categoria, sheetOpen, titleVisible, derivados, verTodos, tabIds, onResumenAction, IcArrowRight }
+    return { popover, actionsSheetOpen, actionItems, d, tab, period, categoria, sheetOpen, titleVisible, derivados, verTodos, tabIds, onResumenAction, IcArrowRight }
   },
   template: `
     <TemplateDetail>
@@ -79,6 +97,12 @@ export default defineComponent({
               </div>
               <R4Section class="ficha__resumen" appearance="boxed" background-color="white" title="Resumen">
                 <R4ListDetail size="medium" :items="d.resumen" @action="onResumenAction" />
+                <div v-if="popover" class="ficha__market-popover" role="dialog" aria-label="En otros mercados" :style="{ top: popover.top + 'px', right: popover.right + 'px' }">
+                  <R4Popover width="wide">
+                    <p class="ficha__market-title">En otros mercados</p>
+                    <ul class="ficha__results"><SearchResultItem v-for="m in d.otrosMercados" :key="m.name" v-bind="m" /></ul>
+                  </R4Popover>
+                </div>
               </R4Section>
             </template>
             <p v-else class="ficha__placeholder">Contenido de «{{ d.tabs[tab].label }}» no incluido en el prototipo.</p>
@@ -89,7 +113,7 @@ export default defineComponent({
       <R4Wrapper v-if="tab === 0" density="compact" class="ficha__w3">
         <div class="r4-grid">
           <R4Section class="ficha__derivados" appearance="boxed" background-color="white" title="Derivados">
-            <div class="ficha__filters" role="group" aria-label="Tipo de derivado">
+            <div v-drag-scroll class="ficha__filters" role="group" aria-label="Tipo de derivado">
               <R4Chip v-for="c in d.derivados.categorias" :key="c.id" size="small" :label="c.label" :selected="categoria === c.id" @click="categoria = c.id" />
             </div>
             <ul class="ficha__results">
@@ -112,17 +136,17 @@ export default defineComponent({
 
       <template #dock>
         <R4ButtonDock>
-          <ProductActionsMenu :actions="d.producto.secondaryActions" placement="up" />
+          <ProductActionsMenu :actions="d.producto.secondaryActions" as-sheet @open="actionsSheetOpen = true" />
           <R4Button type="primary" :text="d.producto.ctaText" />
         </R4ButtonDock>
       </template>
 
       <template #overlay>
-        <R4Sheet class="ficha__sheet ficha__sheet--side" position="side" title="En otros mercados" :open="sheetOpen" @close="sheetOpen = false">
+        <R4Sheet class="ficha__sheet ficha__sheet--market" position="bottom" title="En otros mercados" :open="sheetOpen" @close="sheetOpen = false">
           <ul class="ficha__results"><SearchResultItem v-for="m in d.otrosMercados" :key="m.name" v-bind="m" /></ul>
         </R4Sheet>
-        <R4Sheet class="ficha__sheet ficha__sheet--bottom" position="bottom" title="En otros mercados" :open="sheetOpen" @close="sheetOpen = false">
-          <ul class="ficha__results"><SearchResultItem v-for="m in d.otrosMercados" :key="m.name" v-bind="m" /></ul>
+        <R4Sheet class="ficha__sheet ficha__sheet--actions" position="bottom" title="Más acciones" :open="actionsSheetOpen" @close="actionsSheetOpen = false">
+          <R4NavigationItems size="medium" density="narrow" :items="actionItems" aria-label="Más acciones" @select="actionsSheetOpen = false" />
         </R4Sheet>
       </template>
     </TemplateDetail>

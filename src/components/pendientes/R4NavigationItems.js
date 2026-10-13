@@ -5,7 +5,7 @@
 // Semántica según la doc: <nav> > <ul> > <li> con <a> (el foco cae en el ítem completo; iconos y chevron decorativos).
 // Reconstruido (leído en Figma): size medium, hasCardContainer=false (ítem plano con línea inferior), estados default / hover / focused / pressed / disabled.
 // NO reconstruido: size large, hasCardContainer=true (con CardContainer), showLine/showLink = false, density default/relaxed solo como gap.
-// Deducción: el icono es obligatorio en la API; en el menú de acciones de la ficha no hay icono diseñado → se admite `icon` vacío (no se pinta la caja del icono).
+// Extra: cada ítem admite showLink (false oculta el chevron; en Figma showLink, Changelog SM-24193; la API de la doc no lo recoge). El icono es obligatorio en la API; en el menú de acciones lleva ic-clock sin flecha (Jon).
 import { defineComponent, computed } from '../../../vendor/vue.esm-browser.prod.js'
 import Icon from '../../icons/_Icon.js'
 
@@ -37,7 +37,7 @@ export default defineComponent({
               <span class="r4-navitems__title">{{ it.title }}</span>
               <span v-if="it.description" class="r4-navitems__description">{{ it.description }}</span>
             </span>
-            <Icon class="r4-navitems__chevron" name="ic-angle-right" />
+            <Icon v-if="it.showLink !== false" class="r4-navitems__chevron" name="ic-angle-right" />
           </a>
         </li>
       </ul>

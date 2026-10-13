@@ -80,9 +80,19 @@
 .ficha__reco-cta { width: 100%; }
 .ficha__reco .r4-section__slot { align-items: stretch; }
 
-/* Sheet «En otros mercados»: side en ≥ 1024, bottom por debajo */
-.ficha__sheet--side { display: none; }
+/*
+ * «En otros mercados»: R4Popover wide anclado a la acción de «Mercado» del Resumen (Figma desktop, 2481:37183) en ≥ 1024 px; por debajo, bottom sheet (Figma mobile).
+ * El menú «Más acciones» del dock de mobile también va en un bottom sheet, por encima del dock (la capa de superposición está sobre él).
+ */
+.ficha__resumen { position: relative; }
+.ficha__market-popover { position: absolute; z-index: 200; }
+.ficha__market-title { margin: 0; color: var(--text-default); font-size: var(--size-body-m); line-height: var(--line-height-body-m); font-weight: var(--font-weight-bold); }
+.ficha__market-popover .r4-popover { gap: var(--spacing-4); }
+.ficha__market-popover { display: none; }
 @container r4page (min-width: 1024px) {
-  .ficha__sheet--side { display: flex; }
-  .ficha__sheet--bottom { display: none; }
+  .ficha__market-popover { display: block; }
+  .ficha__sheet--market { display: none; }
+}
+@container r4page (min-width: 600px) {
+  .ficha__sheet--actions { display: none; }
 }

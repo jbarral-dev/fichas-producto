@@ -11,15 +11,12 @@
   min-height: 100vh;
 }
 
-/* Cabecera (Menu + barra fija opcional): fija al hacer scroll en tablet y mobile (barra compacta de 56); en desktop va estática (franja + barra de 134, no se ha pedido fija) */
+/* Cabecera (Menu + barra fija opcional): fija al hacer scroll en todos los anchos (Jon) */
 .template-detail__header {
   position: sticky;
   top: 0;
   z-index: 100;
   width: 100%;
-}
-@container r4page (min-width: 1024px) {
-  .template-detail__header { position: static; }
 }
 
 .template-detail__main {

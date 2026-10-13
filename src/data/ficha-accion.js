@@ -18,7 +18,7 @@ export const accion = {
     ],
     ctaText: 'Contratar',
     // En la doc de R4PageTitleProduct la única acción restante de Acciones es «Configurar tiempo real»
-    secondaryActions: [{ label: 'Configurar tiempo real' }],
+    secondaryActions: [{ label: 'Configurar tiempo real', icon: 'ic-clock', showLink: false }],
   },
 
   tabs: [

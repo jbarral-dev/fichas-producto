@@ -8,12 +8,14 @@
 // Reconstruido: type divider y title, layout scrollable y fixed. El icono por pestaña (showIcon) se admite si el nombre está en el registro de iconos.
 import { defineComponent, ref, nextTick } from '../../../vendor/vue.esm-browser.prod.js'
 import Icon from '../../icons/_Icon.js'
+import dragScroll from '../../directives/dragScroll.js'
 
 let uid = 0
 
 export default defineComponent({
   name: 'R4Tabs',
   components: { Icon },
+  directives: { dragScroll },
   props: {
     tabs: { type: Array, required: true },
     activeTab: { type: Number, default: 0 },
@@ -45,7 +47,7 @@ export default defineComponent({
   },
   template: `
     <div class="r4-tabs" :class="['r4-tabs--' + type, 'r4-tabs--' + layout]">
-      <div ref="list" class="r4-tabs__list" role="tablist" :aria-label="ariaLabel" @keydown="onKeydown">
+      <div ref="list" v-drag-scroll class="r4-tabs__list" role="tablist" :aria-label="ariaLabel" @keydown="onKeydown">
         <button v-for="(t, i) in tabs" :key="i" type="button" role="tab" class="r4-tabs__item" :class="{ 'is-active': i === activeTab }"
                 :id="tabId(i)" :aria-selected="i === activeTab ? 'true' : 'false'" :aria-controls="panelId(i)"
                 :tabindex="i === activeTab ? 0 : -1" :disabled="t.disabled" @click="select(i)">

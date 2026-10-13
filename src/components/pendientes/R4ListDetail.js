@@ -36,7 +36,7 @@ export default defineComponent({
             <Icon v-if="it.valueIcon" class="r4-listdetail__value-icon" :name="it.valueIcon" />
             <span class="r4-listdetail__value-text">{{ it.value }}</span>
             <div v-if="it.action" class="r4-listdetail__actions" role="toolbar" :aria-label="'Acciones de ' + it.concept">
-              <R4Button class="r4-listdetail__action" type="text" size="medium" :icon="it.action.icon" :aria-label="it.action.label" @click="$emit('action', it)" />
+              <R4Button class="r4-listdetail__action" type="text" size="medium" :icon="it.action.icon" :aria-label="it.action.label" @click="$emit('action', it, $event)" />
             </div>
           </component>
         </div>
