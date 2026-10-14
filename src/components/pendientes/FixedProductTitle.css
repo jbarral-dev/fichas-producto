@@ -3,7 +3,7 @@
  * grid/containerPadding (12 mobile · 24 desktop).
  * Mobile: padding vertical 12 (alto 48); izquierda gap 8 con padding derecho 24: logo 24 + nombre body/m Regular (elipsis); derecha gap 4: variación Exo 2 Medium 12/16 en chart/negative|positive
  *   (texto «(-2,85%)», sin separación entre partes) y precio Exo 2 SemiBold 16/24.
- * Desktop/tablet (≥ 600): padding vertical 24 y alto 88 (el botón de 40 manda); izquierda gap 16: logo 32, nombre body/xl Regular (20/28), separador de 1 px (surface/muted, alto completo) y mercado
+ * Desktop/tablet (≥ 600): padding vertical 16 y alto 72 (el botón de 40 manda; Jon: 24 → 16); izquierda gap 16: logo 32, nombre body/xl Regular (20/28), separador de 1 px (surface/muted, alto completo) y mercado
  *   (gap 16 con el separador; bandera 24 + nombre body/m en text/subdued, gap 8); derecha gap 24: variación Exo 2 Medium body/l (18/26) y precio Exo 2 SemiBold heading/s (gap 12, alineados abajo) + R4Button primary.
  */
 .r4-fixedproducttitle {
@@ -46,7 +46,7 @@
 
 /* Desktop y tablet */
 @container r4page (min-width: 600px) {
-  .r4-fixedproducttitle { padding-block: var(--spacing-6); }
+  .r4-fixedproducttitle { padding-block: var(--spacing-4); }
   .r4-fixedproducttitle__left { gap: var(--spacing-4); }
   .r4-fixedproducttitle__logo { width: var(--spacing-8); height: var(--spacing-8); }
   .r4-fixedproducttitle__name { flex: none; max-width: 100%; font-size: var(--size-body-xl); line-height: var(--line-height-body-xl); }
