@@ -39,7 +39,7 @@
 .r4-pagetitleproduct__market .r4-icon { flex: none; width: var(--spacing-4); height: var(--spacing-4); }
 
 .r4-pagetitleproduct__price-actions { display: flex; align-items: flex-end; gap: var(--spacing-12); width: 100%; }
-.r4-pagetitleproduct__left { display: flex; flex: 1 1 0; flex-direction: column; gap: var(--spacing-4); min-width: 0; }
+.r4-pagetitleproduct__left { display: flex; flex: 1 1 0; flex-direction: column; gap: var(--spacing-5); min-width: 0; } /* 20 entre precio y precio objetivo en desktop (Figma 2756:76644) */
 
 .r4-pagetitleproduct__price { display: flex; flex-wrap: wrap; align-items: flex-end; gap: var(--spacing-4); height: var(--spacing-10); } /* Figma: capa de 40 con el precio (44) sobresaliendo 4 por arriba */
 .r4-pagetitleproduct__amount {
