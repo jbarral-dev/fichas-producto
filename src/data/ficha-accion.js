@@ -21,8 +21,8 @@ export const accion = {
     secondaryActions: [{ label: 'Configurar tiempo real', icon: 'ic-clock', showLink: false }],
   },
 
-  // Capa fija al hacer scroll (fixedProductTitleLayer): el mercado que muestra el Figma es el índice («IBEX 35»), no la bolsa del título
-  capaFija: { market: { name: 'IBEX 35', flag: 'flag-spain' } },
+  // Capa fija al hacer scroll (fixedProductTitleLayer): muestra el mercado del producto (BME), igual que el título
+  capaFija: { market: { name: 'BME', flag: 'flag-spain' } },
 
   tabs: [
     { label: 'Detalle' },
